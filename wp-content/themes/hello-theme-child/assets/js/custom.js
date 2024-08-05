@@ -15,6 +15,29 @@ jQuery(window).on("load", function() {
 });
 jQuery(document).ready(function() {
 
+    // Function to refresh cart fragments
+    function refreshCartFragments() {
+        jQuery.ajax({
+            url: sv_ajax.ajax_url,
+            type: 'POST',
+            data: {
+                action: 'woocommerce_get_refreshed_fragments'
+            },
+            success: function(data) {
+                if (data && data.fragments) {
+                    jQuery.each(data.fragments, function(key, value) {
+                        jQuery(key).replaceWith(value);
+                    });
+                }
+            }
+        });
+    }
+
+    // Refresh cart fragments when quantities are changed
+    jQuery(document).on('click', 'button[name="update_cart"]', function(e) {
+        refreshCartFragments();
+    });
+
 
     if (jQuery('body').hasClass('woocommerce-wishlist') && !jQuery('body').hasClass('woocommerce-account')) {
         jQuery('body').addClass('woocommerce-account');

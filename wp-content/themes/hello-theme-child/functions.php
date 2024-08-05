@@ -335,18 +335,22 @@ add_shortcode( 'blog_listing', 'sv_blog_listing' );
 
 
 /**
- * Function to update minicart fragment
+ * Function to update mini cart fragment
  * 
- * @param Array $fragments This variable holds the fragments value array.
+ * @param array $fragments This variable holds the fragments value array.
  * @since 1.0.0
  */
-add_filter( 'woocommerce_add_to_cart_fragments', 'iconic_cart_count_fragments', 10, 1 );
-function iconic_cart_count_fragments( $fragments ) {
-    
-    $fragments['span.cart-items-count'] = '<span class="cart-counter">' . WC()->cart->get_cart_contents_count() . '</span>';  
+add_filter('woocommerce_add_to_cart_fragments', 'iconic_cart_count_fragments', 10, 1);
+function iconic_cart_count_fragments($fragments) {
+    ob_start();
+    ?>
+    <span class="cart-counter"><?php echo WC()->cart->get_cart_contents_count(); ?></span>
+    <?php
+    $fragments['span.cart-counter'] = ob_get_clean();
     return $fragments;
-
 }
+
+
 
 /**
 * Function to display whatsapp chat icon
