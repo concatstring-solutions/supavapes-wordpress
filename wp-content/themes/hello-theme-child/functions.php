@@ -1623,22 +1623,28 @@ function sv_save_notification_preference_settings() {
 add_action( 'init', 'sv_save_notification_preference_settings' );
 
 
-// Remove duplicate notices from WooCommerce error messages
-function remove_duplicate_notices($notices) {
-    $filtered_notices = [];
-    foreach ($notices as $notice) {
-        $message = strip_tags($notice['notice']);
-        if (!in_array($message, array_column($filtered_notices, 'notice'))) {
-            $filtered_notices[] = $notice;
-        }
+function sv_remove_duplicate_notices($message, $message_code = '') {
+    static $notices = [];
+
+    // Create a unique hash for the message
+    $hash = md5($message);
+
+    // Check if the notice is already stored
+    if (isset($notices[$hash])) {
+        return '';
     }
-    return $filtered_notices;
+
+    // Store the notice
+    $notices[$hash] = true;
+
+    return $message;
 }
 
-// Hook into WooCommerce error messages
-add_filter('woocommerce_add_error', 'remove_duplicate_notices', 10, 1);
-add_filter('woocommerce_add_notice', 'remove_duplicate_notices', 10, 1);
-add_filter('woocommerce_add_success', 'remove_duplicate_notices', 10, 1);
+// Hook into the WooCommerce error handling to remove duplicate error messages
+add_filter('woocommerce_add_error', 'sv_remove_duplicate_notices', 10, 2);
+add_filter('woocommerce_add_notice', 'sv_remove_duplicate_notices', 10, 2);
+add_filter('woocommerce_add_success', 'sv_remove_duplicate_notices', 10, 2);
+
 
 
 
