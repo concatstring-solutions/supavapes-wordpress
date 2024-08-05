@@ -343,7 +343,7 @@ add_shortcode( 'blog_listing', 'sv_blog_listing' );
 add_filter( 'woocommerce_add_to_cart_fragments', 'iconic_cart_count_fragments', 10, 1 );
 function iconic_cart_count_fragments( $fragments ) {
     
-    $fragments['span.cart-items-count'] = '<span class="cart-items-count count">' . WC()->cart->get_cart_contents_count() . '</span>';  
+    $fragments['span.cart-items-count'] = '<span class="cart-counter">' . WC()->cart->get_cart_contents_count() . '</span>';  
     return $fragments;
 
 }
