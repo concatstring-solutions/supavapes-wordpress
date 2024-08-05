@@ -2,10 +2,6 @@
 ?>
     <form method="post" class="woocommerce-EditAccountForm">
         <?php
-		if (isset($_SESSION['preferences_saved']) && $_SESSION['preferences_saved']) {
-			echo '<div class="notice notice-success"><p>' . esc_html__('Preferences saved successfully.', 'hello-elementor-child') . '</p></div>';
-			unset($_SESSION['preferences_saved']);
-		}
 
         $user_id = get_current_user_id();
         $email = get_user_meta( $user_id, 'email', true );
@@ -43,6 +39,12 @@
                 </span>
             </label>
         </p>
+		<?php 
+			if (isset($_SESSION['preferences_saved']) && $_SESSION['preferences_saved']) {
+				echo '<div class="notice notice-success"><p>' . esc_html__('Preferences saved successfully.', 'hello-elementor-child') . '</p></div>';
+				unset($_SESSION['preferences_saved']);
+			}
+		?>
         <p>
             <button type="submit" class="woocommerce-Button button" name="save_preferences" value="Save"><?php echo esc_html__('Save Preferences','hello-elementor-child'); ?></button>
 			<p><?php echo esc_html__('Disclaimer: Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem'); ?></p>
