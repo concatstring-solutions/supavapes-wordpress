@@ -37,7 +37,7 @@ $label = ! empty( $args['product_name'] ) ? sprintf( esc_html__( '%s quantity', 
 	<button class="qty-count qty-count--minus minus" data-action="minus" type="button">-</button>
 	<input
 		type="number"
-		<?php echo $readonly ? 'readonly="readonly"' : ''; ?>
+		readonly
 		id="<?php echo esc_attr( $input_id ); ?>"
 		class="<?php echo esc_attr( join( ' ', (array) $classes ) ); ?>"
 		name="<?php echo esc_attr( $input_name ); ?>"
