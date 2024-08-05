@@ -1623,6 +1623,26 @@ function sv_save_notification_preference_settings() {
 add_action( 'init', 'sv_save_notification_preference_settings' );
 
 
+// Remove duplicate notices from WooCommerce error messages
+function remove_duplicate_notices($notices) {
+    $filtered_notices = [];
+    foreach ($notices as $notice) {
+        $message = strip_tags($notice['notice']);
+        if (!in_array($message, array_column($filtered_notices, 'notice'))) {
+            $filtered_notices[] = $notice;
+        }
+    }
+    return $filtered_notices;
+}
+
+// Hook into WooCommerce error messages
+add_filter('woocommerce_add_error', 'remove_duplicate_notices', 10, 1);
+add_filter('woocommerce_add_notice', 'remove_duplicate_notices', 10, 1);
+add_filter('woocommerce_add_success', 'remove_duplicate_notices', 10, 1);
+
+
+
+
 /**
 * Debug Function
 *
