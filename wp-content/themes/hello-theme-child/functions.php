@@ -1602,6 +1602,16 @@ function sv_save_notification_preference_settings() {
 			update_user_meta( $user_id, 'email', $email );
 			update_user_meta( $user_id, 'whatsapp', $whatsapp );
 			update_user_meta( $user_id, 'sms', $sms );
+
+            // Set session variable
+			if (!session_id()) {
+				session_start();
+			}
+			$_SESSION['preferences_saved'] = true;
+
+			// Redirect to the same page to avoid form resubmission
+			wp_redirect($_SERVER['REQUEST_URI']);
+			exit;
 		}
     }
 }
