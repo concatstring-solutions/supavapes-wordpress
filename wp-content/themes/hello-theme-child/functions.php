@@ -1584,6 +1584,14 @@ function flush_rewrite_rules_on_activation() {
 	}
 }
 
+function sv_start_session() {
+	if (!session_id()) {
+		session_start();
+	}
+}
+add_action('init', 'sv_start_session', 1);
+
+
 /**
 * Function to save notification preferences.
 *
@@ -1604,9 +1612,6 @@ function sv_save_notification_preference_settings() {
 			update_user_meta( $user_id, 'sms', $sms );
 
             // Set session variable
-			if (!session_id()) {
-				session_start();
-			}
 			$_SESSION['preferences_saved'] = true;
 
 			// Redirect to the same page to avoid form resubmission

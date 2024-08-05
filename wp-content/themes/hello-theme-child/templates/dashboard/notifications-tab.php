@@ -2,10 +2,6 @@
 ?>
     <form method="post" class="woocommerce-EditAccountForm">
         <?php
-		// debug($_SESSION['preferences_saved']);
-		if (!session_id()) {
-			session_start();
-		}
 		if (isset($_SESSION['preferences_saved']) && $_SESSION['preferences_saved']) {
 			echo '<div class="notice notice-success"><p>' . esc_html__('Preferences saved successfully.', 'hello-elementor-child') . '</p></div>';
 			unset($_SESSION['preferences_saved']);
