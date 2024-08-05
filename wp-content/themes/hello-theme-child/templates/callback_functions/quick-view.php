@@ -119,11 +119,11 @@ global $product;
 						<div class="product-quantity quantity">
 							<?php if ($product->is_in_stock()) { ?>
 								<button class="qty-count qty-count--minus minus" data-action="minus" type="button">-</button>
-								<input type="" id="quantity_663231758773c" class="input-text qty text quick-view-popup-qty" name="quantity" value="1" aria-label="Product quantity" size="4" min="1" max="" step="1" placeholder="" inputmode="numeric" autocomplete="off">
+								<input type="" id="quantity_663231758773c" class="input-text qty text quick-view-popup-qty" name="quantity" value="1" aria-label="Product quantity" size="4" min="1" max="" step="1" placeholder="" inputmode="numeric" autocomplete="off" readonly>
 								<button class="qty-count qty-count--add plus" data-action="add" type="button">+</button>
 							<?php }else{?>
 								<button class="qty-count qty-count--minus minus" data-action="minus" type="button" disabled>-</button>
-								<input type="" id="quantity_663231758773c" class="input-text qty text quick-view-popup-qty" name="quantity" value="1" aria-label="Product quantity" size="4" min="1" max="" step="1" placeholder="" inputmode="numeric" autocomplete="off">
+								<input type="" id="quantity_663231758773c" class="input-text qty text quick-view-popup-qty" name="quantity" value="1" aria-label="Product quantity" size="4" min="1" max="" step="1" placeholder="" inputmode="numeric" autocomplete="off" readonly>
 								<button class="qty-count qty-count--add plus" data-action="add" type="button" disabled>+</button>
 							<?php }?>
 						</div>
