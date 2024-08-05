@@ -2,7 +2,7 @@
 ?>
     <form method="post" class="woocommerce-EditAccountForm">
         <?php
-
+		debug($_SESSION['preferences_saved']);
 		if (!session_id()) {
 			session_start();
 		}
