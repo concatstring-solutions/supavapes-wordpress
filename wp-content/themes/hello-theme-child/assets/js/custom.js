@@ -48,7 +48,7 @@ jQuery(document).ready(function() {
         jQuery('.wc-block-components-checkout-place-order-button').addClass('cod-payment');
         if (jQuery('#checkbox-control-0').length) {
             jQuery('#checkbox-control-0').prop('checked', true);
-        }
+        } 
     }
    
     if (jQuery('body').hasClass('woocommerce-wishlist') && !jQuery('body').hasClass('woocommerce-account')) {
