@@ -232,7 +232,7 @@ body.single-product main.site-main {max-width: 1240px !important;padding-top: 10
 body.single-product .product.woocommerce-grouped-product-list-item{display: flex;flex-flow: column !important;gap: 20px !important;width: 100%;}
 body.single-product div.product form.cart .group_table .single_add_to_cart_button{width: 100%;}
 body.single-product div.product .yith-wcwl-add-to-wishlist{display: none !important;}
-ul.woocommerce-error,.woocommerce-info,.woocommerce-message {background: var(--secondary) !important;font-size: 16px !important;color: var(--white);}
+ul.woocommerce-error,.woocommerce-info,.woocommerce-message {background: var(--secondary) !important;font-size: 16px !important;color: var(--white);outline: none !important;}
 .woocommerce-message a.button.wc-forward {font-size: 16px !important;}
 body.single-product .cartItemInfo {border-top: none Im !important;}
 button#vns_simpleproduct_pre_order{background-color: var(--primary-palette-carmine-pink) !important;border-color: var(--primary-palette-carmine-pink) !important;}
