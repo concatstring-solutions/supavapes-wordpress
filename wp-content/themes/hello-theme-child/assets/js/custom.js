@@ -2,17 +2,17 @@ jQuery(window).on("load", function() {
     jQuery('.pre-loader_page').hide();
     jQuery('body').removeClass('sv-popup-open');
     // Listen for click event on the Moneris payment button
-    jQuery('.wc-block-components-checkout-place-order-button.continue-payment').on('click', function(e) {
-        e.preventDefault();
-        var counter = getCookie('payment_fail_counter');
-        jQuery('.sv-place-order').hide();
-        jQuery('.wc-block-components-checkout-place-order-button').addClass('continue-payment');
-        if (parseInt(counter) >= sv_ajax.payment_fail_counter) {
-            jQuery('.pre-loader_page').hide();
-            jQuery('.checkout-prevent-popup').css('display', 'flex');
-            return false;
-        }
-    });
+    // jQuery('.wc-block-components-checkout-place-order-button.continue-payment').on('click', function(e) {
+    //     e.preventDefault();
+    //     var counter = getCookie('payment_fail_counter');
+    //     jQuery('.sv-place-order').hide();
+    //     jQuery('.wc-block-components-checkout-place-order-button').addClass('continue-payment');
+    //     if (parseInt(counter) >= sv_ajax.payment_fail_counter) {
+    //         jQuery('.pre-loader_page').hide();
+    //         jQuery('.checkout-prevent-popup').css('display', 'flex');
+    //         return false;
+    //     }
+    // });
 });
 jQuery(document).ready(function() {
 
