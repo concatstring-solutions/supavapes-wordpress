@@ -350,6 +350,13 @@ function iconic_cart_count_fragments( $fragments ) {
     
 }
 
+add_filter( 'body_class', 'sv_custom_class_in_body' );
+function sv_custom_class_in_body( $classes ) {
+	
+    $classes[] = 'sv-popup-open';
+    
+	return $classes;
+}
 
 /**
 * Function to display whatsapp chat icon

@@ -1,5 +1,6 @@
 jQuery(window).on("load", function() {
     jQuery('.pre-loader_page').hide();
+    jQuery('body').removeClass('sv-popup-open');
     // Listen for click event on the Moneris payment button
     jQuery('.wc-block-components-checkout-place-order-button.continue-payment').on('click', function(e) {
         e.preventDefault();
