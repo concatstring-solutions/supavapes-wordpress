@@ -3670,4 +3670,4 @@ function sv_duplicate_comment($dupe_id, $commentdata){
     var_dump($dupe_id);
     die('lkoo');
 }
-add_filter('duplicate_comment_id','sv_duplicate_comment');
+add_filter('duplicate_comment_id','sv_duplicate_comment',10,2);
