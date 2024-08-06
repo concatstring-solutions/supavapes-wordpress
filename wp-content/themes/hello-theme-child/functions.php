@@ -114,7 +114,8 @@ function hello_elementor_child_scripts_styles()
     $user_id = $current_user->ID;
     $counter_for_prevent_user_to_place_order = get_field('counter_for_prevent_user_to_place_order','option');
     $ajax_data = array(
-        'ajax_url' => admin_url('admin-ajax.php'), 
+        'ajax_url' => admin_url('admin-ajax.php'),
+        'wc_ajax_url' => WC()->ajax_url(),
         'cart_url' => wc_get_cart_url(),
         'site_url' => get_site_url(),
         'verify_age_disagree_btn' => $verify_age_disagree_button_url,
