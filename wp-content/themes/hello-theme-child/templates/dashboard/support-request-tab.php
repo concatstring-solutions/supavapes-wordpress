@@ -52,7 +52,7 @@ if ($support_requests->have_posts()) {
     echo '</tbody>';
     echo '</table>';
 } else {
-    echo '<p>No support requests found.</p>';
+    wc_add_notice( __( 'No Support request found.', 'hello-elementor-child' ), 'notice' );
 }
 
 wp_reset_postdata();

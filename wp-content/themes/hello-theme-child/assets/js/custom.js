@@ -44,7 +44,10 @@ jQuery(document).ready(function() {
         refreshCartFragments();
     });
 
-
+    if (jQuery('body').hasClass('woocommerce-checkout')) {
+        jQuery('.wc-block-components-checkout-place-order-button').addClass('cod-payment');
+    }
+    
     if (jQuery('body').hasClass('woocommerce-wishlist') && !jQuery('body').hasClass('woocommerce-account')) {
         jQuery('body').addClass('woocommerce-account');
     }
