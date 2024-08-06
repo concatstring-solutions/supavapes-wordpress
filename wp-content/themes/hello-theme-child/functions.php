@@ -114,7 +114,7 @@ function hello_elementor_child_scripts_styles()
     $user_id = $current_user->ID;
     $counter_for_prevent_user_to_place_order = get_field('counter_for_prevent_user_to_place_order','option');
     $ajax_data = array(
-        'ajax_url' => admin_url('admin-ajax.php'), 
+        'ajax_url' => admin_url('admin-ajax.php'),
         'cart_url' => wc_get_cart_url(),
         'site_url' => get_site_url(),
         'verify_age_disagree_btn' => $verify_age_disagree_button_url,
@@ -425,6 +425,13 @@ if( function_exists('acf_add_options_page') ) {
         'menu_title' => 'Subscriber Modal Popup Settings',
         'parent_slug' => 'supavapes-settings',
     ));
+
+    acf_add_options_sub_page(array(
+        'page_title' => 'Mailchimp Settings',
+        'menu_title' => 'Mailchimp Settings',
+        'parent_slug' => 'supavapes-settings',
+    ));
+
 	acf_add_options_sub_page(array(
         'page_title' => 'Announcement Top Bar',
         'menu_title' => 'Announcement Top Bar',
@@ -481,6 +488,8 @@ if( function_exists('acf_add_options_page') ) {
         'menu_title' => 'WC Email Content',
         'parent_slug' => 'supavapes-settings',
     ));
+
+   
 	
 }
 
@@ -2035,7 +2044,7 @@ add_shortcode('footer_mailchimp_form', 'sv_footer_mailchimp_form');
 function sv_fetch_mailchimp_subscribers() {
 
     $mailchimp_api_key = get_field('mailchimp_api_key','option');
-    $mailchimp_list_id = get_field('mailchimp_api_key','option');
+    $mailchimp_list_id = get_field('mailchimp_list_id','option');
     $api_key = $mailchimp_api_key;
     $list_id = $mailchimp_list_id;
     $url = 'https://<dc>.api.mailchimp.com/3.0/lists/' . $list_id . '/members';
@@ -2127,7 +2136,7 @@ function sv_handle_mailchimp_subscription_action() {
         $email = sanitize_email($_GET['email']);
         $action_type = sanitize_text_field($_GET['action_type']);
         $mailchimp_api_key = get_field('mailchimp_api_key','option');
-        $mailchimp_list_id = get_field('mailchimp_api_key','option');
+        $mailchimp_list_id = get_field('mailchimp_list_id','option');
         $api_key = $mailchimp_api_key;
         $list_id = $mailchimp_list_id;
         $member_id = md5(strtolower($email));
@@ -2276,7 +2285,7 @@ function sv_mailchimp_subscribe() {
         wp_send_json_error('Invalid email address.');
     }
     $mailchimp_api_key = get_field('mailchimp_api_key','option');
-    $mailchimp_list_id = get_field('mailchimp_api_key','option');
+    $mailchimp_list_id = get_field('mailchimp_list_id','option');
     $api_key = $mailchimp_api_key;
     $list_id = $mailchimp_list_id;
     $email = $_POST['email'];

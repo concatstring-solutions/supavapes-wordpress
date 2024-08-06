@@ -39,8 +39,8 @@ jQuery(document).ready(function() {
         refreshCartFragments();
     });
 
-      // Refresh cart fragments when quantities are changed
-      jQuery(document).on('click', '.product-remove a', function(e) {
+    // Refresh cart fragments when quantities are changed
+    jQuery(document).on('click', '.product-remove a', function(e) {
         refreshCartFragments();
     });
 
