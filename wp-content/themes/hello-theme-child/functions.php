@@ -2034,7 +2034,7 @@ add_shortcode('footer_mailchimp_form', 'sv_footer_mailchimp_form');
 
 function sv_fetch_mailchimp_subscribers() {
 
-    $api_key = 'faa3650a07741135b0f4502473fbe1ad-us22';
+    $api_key = '2ff999fa70e5da273d08a54ccb37efcb-us22';
     $list_id = '9b62d40b4c';
     $url = 'https://<dc>.api.mailchimp.com/3.0/lists/' . $list_id . '/members';
     $url = str_replace('<dc>', substr($api_key, strpos($api_key, '-') + 1), $url);
