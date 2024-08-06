@@ -3666,8 +3666,7 @@ function custom_reviews_tab_content() {
 }
 
 
-function sv_duplicate_comment($dupe_id, $commentdata){
-    var_dump($dupe_id);
-    die('lkoo');
+function sv_duplicate_comment(){
+    return null;
 }
-add_filter('duplicate_comment_id','sv_duplicate_comment',10,2);
+add_filter('duplicate_comment_id','sv_duplicate_comment',99);
