@@ -3664,3 +3664,10 @@ function custom_reviews_tab_content() {
         echo '<p class="woocommerce-info">You must be <a href="/my-account">logged in</a> to post a review.</p>';
     }
 }
+
+
+function sv_duplicate_comment($dupe_id, $commentdata){
+    var_dump($dupe_id);
+    die('lkoo');
+}
+add_filter('duplicate_comment_id','sv_duplicate_comment');
