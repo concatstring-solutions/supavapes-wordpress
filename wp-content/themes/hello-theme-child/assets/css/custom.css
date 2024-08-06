@@ -1021,7 +1021,8 @@ a.minusQty::after{ content: "-"; color: var(--white); line-height: 1; font-size:
 /* footer form */
 form#mc-embedded-subscribe-form { margin: 0 !important; }
 div#mc_embed_signup { background: transparent; width: 100%; }
-div#mc_embed_signup .error-message {color: #ff0000; margin-bottom: 10px;font-size: 16px;}
+div#mc_embed_signup .error-message {color: #ff0000;padding-left: 25px; margin-top: 10px;font-size: 16px;}
+div#mc_embed_signup #mce-responses .error-message {color: #ff0000; margin: 0 0 10px !important;padding-left: 25px !important;font-size: 16px;}
 div#mc_embed_signup div#mce-responses{padding: 0 25px !important; width: 100%; margin: 0 !important;}
 div#mc_embed_signup .mc-field-group input { background: transparent; border: 1px solid var(--primary-palette-carmine-pink) !important; height: 60px !important; border-radius: 50px; color: var(--white) !important; padding: 8px 15px !important; font-family: 'Montserrat' !important; }
 .footer-subscribe-form button#mc-embedded-subscribe { width: fit-content !important; padding: 15px 30px !important; border: 1px solid var(--white) !important; background-color: transparent !important; display: flex !important; align-items: center; gap: 12px; height: 60px !important; border-radius: 50px !important; font-size: 18px !important; font-weight: 600 !important; font-family: 'Montserrat' !important; color: var(--white) !important; text-decoration: none !important; transition: all 0.3s ease-in-out !important; }
