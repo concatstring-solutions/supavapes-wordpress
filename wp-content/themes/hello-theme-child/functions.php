@@ -115,7 +115,6 @@ function hello_elementor_child_scripts_styles()
     $counter_for_prevent_user_to_place_order = get_field('counter_for_prevent_user_to_place_order','option');
     $ajax_data = array(
         'ajax_url' => admin_url('admin-ajax.php'),
-        'wc_ajax_url' => WC()->ajax_url(),
         'cart_url' => wc_get_cart_url(),
         'site_url' => get_site_url(),
         'verify_age_disagree_btn' => $verify_age_disagree_button_url,
@@ -426,6 +425,13 @@ if( function_exists('acf_add_options_page') ) {
         'menu_title' => 'Subscriber Modal Popup Settings',
         'parent_slug' => 'supavapes-settings',
     ));
+
+    acf_add_options_sub_page(array(
+        'page_title' => 'Mailchimp Settings',
+        'menu_title' => 'Mailchimp Settings',
+        'parent_slug' => 'supavapes-settings',
+    ));
+
 	acf_add_options_sub_page(array(
         'page_title' => 'Announcement Top Bar',
         'menu_title' => 'Announcement Top Bar',
@@ -482,6 +488,8 @@ if( function_exists('acf_add_options_page') ) {
         'menu_title' => 'WC Email Content',
         'parent_slug' => 'supavapes-settings',
     ));
+
+   
 	
 }
 

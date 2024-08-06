@@ -16,60 +16,33 @@ jQuery(window).on("load", function() {
 });
 jQuery(document).ready(function() {
 
-        // Function to refresh cart fragments
-        function refreshCartFragments() {
-            jQuery.ajax({
-                url: sv_ajax.wc_ajax_url,
-                type: 'POST',
-                data: {
-                    action: 'woocommerce_get_refreshed_fragments'
-                },
-                success: function(data) {
-                    if (data && data.fragments) {
-                        jQuery.each(data.fragments, function(key, value) {
-                            jQuery(key).replaceWith(value);
-                        });
-                    }
-                }
-            });
-        }
-
-        // Handle 'Update Cart' button click
-        jQuery(document).on('click', 'button[name="update_cart"]', function(e) {
-            e.preventDefault();
-            var $form = jQuery(this).closest('form');
-            jQuery.post($form.attr('action'), $form.serialize(), function(response) {
-                jQuery(document.body).trigger('updated_wc_div');
-                refreshCartFragments();
-            });
-        });
-
-        // Handle 'Remove from Cart' button click
-        jQuery(document).on('click', '.product-remove a', function(e) {
-            e.preventDefault();
-            var $this = jQuery(this);
-            var productId = $this.data('product_id');
-            var cartItemKey = $this.data('cart_item_key');
-            var $cartForm = $this.closest('form');
-            
-            jQuery.post(wc_add_to_cart_params.wc_ajax_url, {
-                action: 'woocommerce_remove_cart_item',
-                cart_item_key: cartItemKey
-            }, function(response) {
-                if (response && response.fragments) {
-                    jQuery.each(response.fragments, function(key, value) {
+    // Function to refresh cart fragments
+    function refreshCartFragments() {
+        jQuery.ajax({
+            url: sv_ajax.ajax_url,
+            type: 'POST',
+            data: {
+                action: 'woocommerce_get_refreshed_fragments'
+            },
+            success: function(data) {
+                if (data && data.fragments) {
+                    jQuery.each(data.fragments, function(key, value) {
                         jQuery(key).replaceWith(value);
                     });
-                    jQuery(document.body).trigger('removed_from_cart');
-                    refreshCartFragments();
                 }
-            });
+            }
         });
+    }
 
-        // Refresh cart fragments on cart update
-        jQuery(document.body).on('updated_wc_div removed_from_cart', function() {
-            refreshCartFragments();
-        });
+    // Refresh cart fragments when quantities are changed
+    jQuery(document).on('click', 'button[name="update_cart"]', function(e) {
+        refreshCartFragments();
+    });
+
+      // Refresh cart fragments when quantities are changed
+      jQuery(document).on('click', '.product-remove a', function(e) {
+        refreshCartFragments();
+    });
 
 
     if (jQuery('body').hasClass('woocommerce-wishlist') && !jQuery('body').hasClass('woocommerce-account')) {
