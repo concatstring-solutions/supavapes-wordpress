@@ -416,10 +416,12 @@ jQuery(document).ready(function() {
     
     jQuery(document).on("click", '#radio-control-wc-payment-method-options-moneris', function(e) {
         jQuery('.sv-place-order').hide();
+        jQuery('.wc-block-components-checkout-place-order-button').removeClass('cod-payment');
         jQuery('.wc-block-components-checkout-place-order-button').addClass('continue-payment');
     });
     jQuery(document).on("click", '#radio-control-wc-payment-method-options-cod', function(e) {
         jQuery('.sv-place-order').show();
+        jQuery('.wc-block-components-checkout-place-order-button').addClass('cod-payment');
         jQuery('.wc-block-components-checkout-place-order-button').removeClass('continue-payment');
     });
     jQuery('#locate-button').on('click', function(e) {
