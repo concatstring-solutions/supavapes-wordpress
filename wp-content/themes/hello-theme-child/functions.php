@@ -2034,8 +2034,10 @@ add_shortcode('footer_mailchimp_form', 'sv_footer_mailchimp_form');
 
 function sv_fetch_mailchimp_subscribers() {
 
-    $api_key = 'faa3650a07741135b0f4502473fbe1ad-us22';
-    $list_id = '9b62d40b4c';
+    $mailchimp_api_key = get_field('mailchimp_api_key','option');
+    $mailchimp_list_id = get_field('mailchimp_api_key','option');
+    $api_key = $mailchimp_api_key;
+    $list_id = $mailchimp_list_id;
     $url = 'https://<dc>.api.mailchimp.com/3.0/lists/' . $list_id . '/members';
     $url = str_replace('<dc>', substr($api_key, strpos($api_key, '-') + 1), $url);
     $count = 100;
@@ -2124,8 +2126,10 @@ function sv_handle_mailchimp_subscription_action() {
     if (isset($_GET['email']) && isset($_GET['action_type'])) {
         $email = sanitize_email($_GET['email']);
         $action_type = sanitize_text_field($_GET['action_type']);
-        $api_key = 'faa3650a07741135b0f4502473fbe1ad-us22';
-        $list_id = '9b62d40b4c';
+        $mailchimp_api_key = get_field('mailchimp_api_key','option');
+        $mailchimp_list_id = get_field('mailchimp_api_key','option');
+        $api_key = $mailchimp_api_key;
+        $list_id = $mailchimp_list_id;
         $member_id = md5(strtolower($email));
         $new_status = ($action_type === 'subscribe') ? 'subscribed' : 'unsubscribed';
 		if ($new_status === 'subscribe') {
@@ -2271,8 +2275,10 @@ function sv_mailchimp_subscribe() {
     if (!isset($_POST['email']) || !is_email($_POST['email'])) {
         wp_send_json_error('Invalid email address.');
     }
-    $api_key = 'faa3650a07741135b0f4502473fbe1ad-us22';
-    $list_id = '9b62d40b4c';
+    $mailchimp_api_key = get_field('mailchimp_api_key','option');
+    $mailchimp_list_id = get_field('mailchimp_api_key','option');
+    $api_key = $mailchimp_api_key;
+    $list_id = $mailchimp_list_id;
     $email = $_POST['email'];
     $phone = $_POST['phone'];
     $member_id = md5(strtolower($email));
