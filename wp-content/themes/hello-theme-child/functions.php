@@ -3604,16 +3604,18 @@ function sv_filter_blogs() {
 			<?php
 		}
 		wp_reset_postdata();
-		$pagination_html = paginate_links(array(
-			'total' => $query->max_num_pages,
-			'current' => $paged,
-			'format' => '?paged=%#%',
-			'show_all' => false,
-			'type' => 'array',
-			'prev_next' => true,
-			'prev_text' => __('« Previous'),
-			'next_text' => __('Next »'),
-		));
+		$pagination_html = paginate_links(
+			array(
+				'total' => $query->max_num_pages,
+				'current' => $paged,
+				'format' => '?paged=%#%',
+				'show_all' => false,
+				'type' => 'array',
+				'prev_next' => true,
+				'prev_text' => __('« Previous'),
+				'next_text' => __('Next »', ''),
+			)
+		);
 		$pagination_html = !empty($pagination_html) ? '<div class="pagination">' . implode('', $pagination_html) . '</div>' : '';
 		$blog_html = ob_get_clean();
 		wp_send_json_success(array(
