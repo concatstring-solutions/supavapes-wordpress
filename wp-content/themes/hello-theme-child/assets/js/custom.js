@@ -38,6 +38,11 @@ jQuery(document).ready(function() {
         refreshCartFragments();
     });
 
+      // Refresh cart fragments when quantities are changed
+      jQuery(document).on('click', '.product-remove a', function(e) {
+        refreshCartFragments();
+    });
+
 
     if (jQuery('body').hasClass('woocommerce-wishlist') && !jQuery('body').hasClass('woocommerce-account')) {
         jQuery('body').addClass('woocommerce-account');
