@@ -298,7 +298,7 @@ jQuery(document).ready(function() {
         jQuery('#purchase-year').change(function() {
             jQuery('.pre-loader_page').show();
             const selectedYear = jQuery(this).val();
-            console.log('Selected Year:', selectedYear);
+            // console.log('Selected Year:', selectedYear);
             updateChart(dailyChart, 'day', selectedYear);
             updateChart(monthlyChart, 'month', selectedYear);
             updateChart(weeklyChart, 'week', selectedYear);
@@ -987,7 +987,7 @@ jQuery(document).ready(function() {
         var tom_month = Months[today.getMonth()];
     }
     let tom_year = today.getFullYear();
-    console.log(tom_month)
+    // console.log(tom_month)
     var new_date = tom_month + ' ' + tom_day + ', ' + tom_year + ' 12:45:00';
     var countDownDate = new Date(new_date).getTime();
     var x = setInterval(function() {
@@ -1134,7 +1134,7 @@ jQuery(document).ready(function() {
                 checkedValues[questionNumber] = checkedValue;
             }
         });
-        console.log(selectedValuesQuize);
+        // console.log(selectedValuesQuize);
     }
     
     jQuery(document).on('change', '.supa-quiz-question-inner input[type="radio"]', function() {

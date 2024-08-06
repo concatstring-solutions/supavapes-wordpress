@@ -21,7 +21,7 @@ jQuery(document).ready(function() {
 
         const observerCallback = (entries, observer) => {
             entries.forEach(entry => {
-                console.log('Intersection Observer Entry:', entry); // Log entry details
+                // console.log('Intersection Observer Entry:', entry); // Log entry details
                 if (entry.isIntersecting) {
                     $tableResponsive.addClass('in-view');
                     $containerBtn.addClass('in-view-btn');
@@ -150,7 +150,7 @@ jQuery(document).ready(function() {
             themeSwitcherInput.prop('checked', true);
             localStorage.setItem('theme', 'dark');
         } else {
-			console.log('lidedasdasda');
+			// console.log('lidedasdasda');
             body.removeClass('dark-theme').addClass('light-theme');
             themeSwitcherInput.prop('checked', false);
             localStorage.setItem('theme', 'light');
@@ -164,14 +164,14 @@ jQuery(document).ready(function() {
 
     // Detect system preference and set initial theme
     var storedTheme = localStorage.getItem('theme');
-	console.log(storedTheme);
+	// console.log(storedTheme);
     var isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
     if (storedTheme === 'dark' || (isDarkMode && storedTheme !== 'light') || storedTheme === null) {
-		console.log('in if');
+		// console.log('in if');
         toggleTheme(true);
     } else {
-		console.log('in else');
+		// console.log('in else');
         toggleTheme(false);
     }
 
