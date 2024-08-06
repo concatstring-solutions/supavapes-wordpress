@@ -1086,11 +1086,12 @@ jQuery(document).ready(function ($) {
             success: function (response) {
                 if ('wqcmv-pre-order-notification-sent' === response.data.message) {
                     $('.wqcmv-send-notofication-to-admin-pre-order').text('Submit');
+                    $('<span class="request-success-message">Request sent successfully</span>').insertBefore('.wqcmv-send-notofication-to-admin-pre-order');
                     // $('.notification_popup.success').fadeIn(1000);
                     // $('.notification_popup.success').addClass('active');
                     // $('.notification_message .title').html('Request sent successfully');
                     // $('.notification_popup.success').fadeOut(3000);
-                    $('#wqcmv-manage-outofstock-products-modal').fadeOut(2000);
+                    // $('#wqcmv-manage-outofstock-products-modal').fadeOut(2000);
                     jQuery('body').removeClass('sv-popup-open');
 
                 }
