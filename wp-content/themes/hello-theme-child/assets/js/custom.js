@@ -50,7 +50,7 @@ jQuery(document).ready(function() {
             jQuery('#checkbox-control-0').prop('checked', true);
         }
     }
-
+   
     if (jQuery('body').hasClass('woocommerce-wishlist') && !jQuery('body').hasClass('woocommerce-account')) {
         jQuery('body').addClass('woocommerce-account');
     }
