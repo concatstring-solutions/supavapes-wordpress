@@ -43,7 +43,7 @@ nav.woocommerce-breadcrumb {position: absolute;top: 20px;margin: 0 !important;le
 .announcement-bar.fix-announcement-bar .annoucement_contdown .countdown #countdown-timer>.countdown-detail {flex-direction: column;background-color: #bebebe33;padding: 5px;border-radius: 6px;width: 80px;}
 .announcement-bar.fix-announcement-bar .annoucement_contdown .countdown #countdown-timer>.countdown-detail .countdown-detail {line-height: initial;margin-bottom: -2px;}
 .announcement-bar.fix-announcement-bar .announcement-bar-link {order: 3;width: 90px;flex-direction: row;flex-wrap: initial;}
-.announcement-bar.fix-announcement-bar span.announcement-bar-close {width: 30px;height: 30px;position: absolute;top: -10px;left: -10px;background-color: #000;border: 1px solid #fff;display: flex;align-items: center;justify-content: center;line-height: 20px;font-size: 20px;border-radius: 50%;cursor: pointer;}
+.announcement-bar.fix-announcement-bar span.announcement-bar-close {width: 30px;height: 30px;position: absolute;top: -10px;left: -10px;background-color: #000;border: 1px solid #fff;display: flex;align-items: center;justify-content: center;font-size: 18px;border-radius: 50%;cursor: pointer;padding-bottom: 2px;}
 .announcement-bar span.announcement-bar-close, .logged-in .whislist-icon, body:not(.logged-in) .logout-icon-container{display: none;}
 body.home .logout-icon-container {display: flex;}
 /* announcement-bar */
@@ -1020,6 +1020,7 @@ body.woocommerce-cart .select2-container--default .select2-results__option[aria-
 body.woocommerce-cart .select2-container--default .select2-selection--single .select2-selection__arrow { top: initial; }
 body.woocommerce-cart .cart-total-right { display: flex; flex-direction: column; align-items: flex-end; }
 body.woocommerce-cart.cart-total-right p { font-size: 18px; font-family: 'Montserrat'; line-height: 26px; color: var(--white); margin: 0 0 50px; padding: 0; text-align: right; }
+button#gpay-button-online-api-id {padding: 0 !important}
 .cart-shop-links{ display: flex; align-items: center; gap: 40px; flex-flow: row wrap; }
 .continue-shopping{ display: flex; flex-direction: row; gap: 12px; color: var(--primary-palette-carmine-pink) !important; transition: all 0.3s ease-in-out !important; text-decoration: none; align-items: center; font-family: Montserrat; }
 .cart-shop-links .view-all-btn { margin: 0 !important; }
