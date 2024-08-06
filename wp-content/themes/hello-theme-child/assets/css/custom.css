@@ -932,6 +932,21 @@ body.woocommerce-cart main.site-main { max-width: 100% !important; width: 100% !
 	box-sizing: border-box;
 	animation: rotation 2s linear infinite;
 }
+.woocommerce .blockUI.blockOverlay{
+	z-index: 1000 !important;
+border: none !important;
+margin: 0px !important;
+padding: 0px !important;
+width: 100% !important;
+height: 100% !important;
+top: 0px !important;
+left: 0px !important;
+background-color: rgb(0, 0, 0) !important;
+opacity: 0.6 !important;
+cursor: wait !important;
+position: absolute !important;
+}
+
 .woocommerce .blockUI.blockOverlay:after {
 content: "" !important;
 box-sizing: border-box;
