@@ -542,327 +542,6 @@ add_action('wp_footer','sv_quick_view_modal');
 
 
 /**
-* Function to render product data in quick view modal.
-*
-* @since 1.0.0
-* 
-*/
-function sv_test_gpay_123(){
-
-	$button_html = "";
-	ob_start();
-	?>
-	<div id="container"></div>
-	<script async src="https://pay.google.com/gp/p/js/pay.js" onload="onGooglePayLoaded()"></script>
-	<script>
-		/**
- * Define the version of the Google Pay API referenced when creating your
- * configuration
- *
- * @see {@link https://developers.google.com/pay/api/web/reference/request-objects#PaymentDataRequest|apiVersion in PaymentDataRequest}
- */
-const baseRequest = {
-  apiVersion: 2,
-  apiVersionMinor: 0
-};
-
-/**
- * Card networks supported by your site and your gateway
- *
- * @see {@link https://developers.google.com/pay/api/web/reference/request-objects#CardParameters|CardParameters}
- * @todo confirm card networks supported by your site and gateway
- */
-const allowedCardNetworks = ["AMEX", "DISCOVER", "INTERAC", "JCB", "MASTERCARD", "VISA"];
-
-/**
- * Card authentication methods supported by your site and your gateway
- *
- * @see {@link https://developers.google.com/pay/api/web/reference/request-objects#CardParameters|CardParameters}
- * @todo confirm your processor supports Android device tokens for your
- * supported card networks
- */
-const allowedCardAuthMethods = ["PAN_ONLY", "CRYPTOGRAM_3DS"];
-
-/**
- * Identify your gateway and your site's gateway merchant identifier
- *
- * The Google Pay API response will return an encrypted payment method capable
- * of being charged by a supported gateway after payer authorization
- *
- * @todo check with your gateway on the parameters to pass
- * @see {@link https://developers.google.com/pay/api/web/reference/request-objects#gateway|PaymentMethodTokenizationSpecification}
- */
-const tokenizationSpecification = {
-  type: 'PAYMENT_GATEWAY',
-  parameters: {
-   'gateway': 'example',
-   'gatewayMerchantId': 'BCR2DN4TSXEJRZJF'
-  }
-};
-
-/**
- * Describe your site's support for the CARD payment method and its required
- * fields
- *
- * @see {@link https://developers.google.com/pay/api/web/reference/request-objects#CardParameters|CardParameters}
- */
-const baseCardPaymentMethod = {
-  type: 'CARD',
-  parameters: {
-	allowedAuthMethods: allowedCardAuthMethods,
-	allowedCardNetworks: allowedCardNetworks
-}
-};
-
-/**
- * Describe your site's support for the CARD payment method including optional
- * fields
- *
- * @see {@link https://developers.google.com/pay/api/web/reference/request-objects#CardParameters|CardParameters}
- */
-const cardPaymentMethod = Object.assign(
-  {},
-  baseCardPaymentMethod,
-  {
-	tokenizationSpecification: tokenizationSpecification
-  }
-);
-
-/**
- * An initialized google.payments.api.PaymentsClient object or null if not yet set
- *
- * @see {@link getGooglePaymentsClient}
- */
-let paymentsClient = null;
-
-/**
- * Configure your site's support for payment methods supported by the Google Pay
- * API.
- *
- * Each member of allowedPaymentMethods should contain only the required fields,
- * allowing reuse of this base request when determining a viewer's ability
- * to pay and later requesting a supported payment method
- *
- * @returns {object} Google Pay API version, payment methods supported by the site
- */
-function getGoogleIsReadyToPayRequest() {
- return Object.assign(
-	 {},
-	 baseRequest,
-	 {
-		 allowedPaymentMethods: [baseCardPaymentMethod]
-	 }
-  );
-}
-
-/**
- * Configure support for the Google Pay API
- *
- * @see {@link https://developers.google.com/pay/api/web/reference/request-objects#PaymentDataRequest|PaymentDataRequest}
- * @returns {object} PaymentDataRequest fields
- */
-function getGooglePaymentDataRequest() {
- const paymentDataRequest = Object.assign({}, baseRequest);
- paymentDataRequest.allowedPaymentMethods = [cardPaymentMethod];
- paymentDataRequest.transactionInfo = getGoogleTransactionInfo();
- paymentDataRequest.merchantInfo = {
- // @todo a merchant ID is available for a production environment after approval by Google
- // See {@link https://developers.google.com/pay/api/web/guides/test-and-deploy/integration-checklist|Integration checklist}
- // merchantId: '01234567890123456789',
- merchantName: 'Supavapes'
- };
- return paymentDataRequest;
-}
-
-/**
- * Return an active PaymentsClient or initialize
- *
- * @see {@link https://developers.google.com/pay/api/web/reference/client#PaymentsClient|PaymentsClient constructor}
- * @returns {google.payments.api.PaymentsClient} Google Pay API client
- */
-function getGooglePaymentsClient() {
- if ( paymentsClient === null ) {
-	 paymentsClient = new google.payments.api.PaymentsClient({environment: 'TEST'});
- }
- return paymentsClient;
-}
-
-/**
- * Initialize Google PaymentsClient after Google-hosted JavaScript has loaded
- *
- * Display a Google Pay payment button after confirmation of the viewer's
- * ability to pay.
- */
-function onGooglePayLoaded() {
- const paymentsClient = getGooglePaymentsClient();
- paymentsClient.isReadyToPay(getGoogleIsReadyToPayRequest())
-  .then(function(response) {
-	console.log(response);
-	 if (response.result) {
-		 addGooglePayButton();
-		 // @todo prefetch payment data to improve performance after confirming site functionality
-		 // prefetchGooglePaymentData();
-	 }
-	 })
-	 .catch(function(err) {
-	 // show error in developer console for debugging
-	 console.error(err);
-	 });
-}
-
-/**
- * Add a Google Pay purchase button alongside an existing checkout button
- *
- * @see {@link https://developers.google.com/pay/api/web/reference/request-objects#ButtonOptions|Button options}
- * @see {@link https://developers.google.com/pay/api/web/guides/brand-guidelines|Google Pay brand guidelines}
- */
-function addGooglePayButton() {
- const paymentsClient = getGooglePaymentsClient();
- const button =
-	 paymentsClient.createButton({onClick: onGooglePaymentButtonClicked});
- document.getElementById('container').appendChild(button);
-}
-
-/**
- * Provide Google Pay API with a payment amount, currency, and amount status
- *
- * @see {@link https://developers.google.com/pay/api/web/reference/request-objects#TransactionInfo|TransactionInfo}
- * @returns {object} transaction info, suitable for use as transactionInfo property of PaymentDataRequest
- */
-function getGoogleTransactionInfo() {
-	return {
-	 countryCode: 'US',
-	 currencyCode: 'USD',
-	 totalPriceStatus: 'FINAL',
-	 // set to cart total
-	 totalPrice: '5.00'
-	 };
-}
-
-/**
- * Prefetch payment data to improve performance
- *
- * @see {@link https://developers.google.com/pay/api/web/reference/client#prefetchPaymentData|prefetchPaymentData()}
- */
-function prefetchGooglePaymentData() {
- const paymentDataRequest = getGooglePaymentDataRequest();
-// transactionInfo must be set but does not affect cache
- paymentDataRequest.transactionInfo = {
- totalPriceStatus: 'NOT_CURRENTLY_KNOWN',
- currencyCode: 'USD'
- };
- const paymentsClient = getGooglePaymentsClient();
-  paymentsClient.prefetchPaymentData(paymentDataRequest);
-}
-
-/**
- * Show Google Pay payment sheet when Google Pay payment button is clicked
- */
-function onGooglePaymentButtonClicked() {
- const paymentDataRequest = getGooglePaymentDataRequest();
- paymentDataRequest.transactionInfo = getGoogleTransactionInfo();
-
- const paymentsClient = getGooglePaymentsClient();
-  paymentsClient.loadPaymentData(paymentDataRequest)
-	.then(function(paymentData) {
-	   // handle the response
-	   processPayment(paymentData);
-	 })
-	 .catch(function(err) {
-	 // show error in developer console for debugging
-	 console.error(err);
-	 });
-}
-
-/**
- * Process payment data returned by the Google Pay API
- *
- * @param {object} paymentData response from Google Pay API after user approves payment
- * @see {@link https://developers.google.com/pay/api/web/reference/response-objects#PaymentData|PaymentData object reference}
- */
-function processPayment(paymentData) {
-  // show returned data in developer console for debugging
-   console.log(paymentData);
-	console.log('payment done');
-  // @todo pass payment token to your gateway to process payment
-  paymentToken = paymentData.paymentMethodData.tokenizationData.token;
-//   alert('payment done.');
-
-
-// Make AJAX call to server to create an order
-jQuery.ajax({
-	url: sv_ajax.ajax_url,
-	type: 'POST',
-	data: {
-	  action: 'create_order',
-	  payment_token: paymentToken,
-	},
-	success: function(response) {
-	  console.log('Order created successfully:', response);
-	  // Handle success response
-	},
-	error: function(xhr, status, error) {
-	  console.error('Order creation failed:', error);
-	  // Handle error response
-	}
-  });
-
-}
-	</script>
-	<?php
-	$button_html = ob_get_clean();
-	echo $button_html;
-
-}
-// add_action('wp_footer','sv_test_gpay_123');
-
-
-function sv_create_order() {
-	if (!isset($_POST['payment_token'])) {
-		wp_send_json_error('Missing payment token.');
-		return;
-	}
-
-	$payment_token = sanitize_text_field($_POST['payment_token']);
-
-	// The order amount (replace with the actual amount you want to charge)
-	$order_amount = 5.00;
-
-	// Create a new WooCommerce order
-	$order = wc_create_order();
-
-	// Add a product to the order (replace 123 with the product ID and 1 with the quantity)
-	$order->add_product( wc_get_product(402), 1 ); // Replace 123 with your product ID
-
-	// Set the order total
-	$order->set_total($order_amount);
-
-	// Set the payment method to Google Pay
-	$order->set_payment_method('Google Pay');
-
-	// Set order status to pending payment
-	$order->set_status('pending');
-
-	// Save the payment token as order meta data
-	$order->update_meta_data('payment_token', $payment_token);
-
-	// Save the order
-	$order_id = $order->save();
-
-	if ($order_id) {
-		wp_send_json_success(array('order_id' => $order_id, 'amount' => $order_amount));
-	} else {
-		wp_send_json_error('Order creation failed.');
-	}
-}
-add_action('wp_ajax_create_order', 'sv_create_order');
-add_action('wp_ajax_nopriv_create_order', 'sv_create_order');
-
-
-
-
-
-/**
 * Function to render product data in checkout prevent modal.
 *
 * @since 1.0.0
@@ -1018,9 +697,6 @@ function sv_store_data_modal(){
 	if ( is_product() ){
 		$store_popup_html = "";
 		ob_start();
-		// $product = wc_get_product();
-		// $id = $product->get_id();
-		// $product_id = 402;
 	
 		$terms = get_the_terms(get_the_ID(), 'store_locator');
 		if ($terms && !is_wp_error($terms)) {
@@ -1054,6 +730,7 @@ function sv_quick_view_product() {
 }
 add_action('wp_ajax_quick_view_product', 'sv_quick_view_product');
 add_action('wp_ajax_nopriv_quick_view_product', 'sv_quick_view_product');
+
 
 add_action('wp_ajax_get_order_items', 'get_order_items_callback');
 add_action('wp_ajax_nopriv_get_order_items', 'get_order_items_callback');
@@ -1438,7 +1115,6 @@ function render_support_request_columns($column, $post_id) {
 }
 
 
-
 /**
 * Ajax callback funtion to add product into cart with quick cart action icon.
 *
@@ -1521,26 +1197,6 @@ function sv_add_custom_menu_item_my_account( $items ) {
 }
 add_filter( 'woocommerce_account_menu_items', 'sv_add_custom_menu_item_my_account' );
 
-
-// Add template redirect for support request detail page
-function sv_support_request_template_redirect() {
-	global $wp_query;
-
-	if (isset($wp_query->query_vars['view-request'])) {
-		$request_id = $wp_query->query_vars['view-request'];
-
-		// Check if the request ID is valid
-		if (get_post_type($request_id) == 'support_request') {
-			// die('lkooooooooo');
-			require_once 'woocommerce/myaccount/view-support-request.php';
-			exit;
-		} else {
-			wp_redirect(home_url('/my-account/'));
-			exit;
-		}
-	}
-}
-// add_action('template_redirect', 'sv_support_request_template_redirect');
 
 /**
 * Function to render notification tab content on my account page
@@ -1665,9 +1321,6 @@ add_filter('woocommerce_add_notice', 'sv_remove_duplicate_notices', 10, 2);
 add_filter('woocommerce_add_success', 'sv_remove_duplicate_notices', 10, 2);
 
 
-
-
-
 /**
 * Debug Function
 *
@@ -1735,7 +1388,6 @@ function sv_modify_custom_post_type_query($query) {
 	}
 }
 add_action('pre_get_posts', 'sv_modify_custom_post_type_query');
-
 
 
 /**
@@ -2886,7 +2538,6 @@ function get_woocommerce_sales_data() {
 		wp_send_json_error('Unauthorized', 403);
 		return;
 	}
-
 	global $wpdb;
 	$user_id = get_current_user_id();
 	$customer_id = $wpdb->get_var($wpdb->prepare("SELECT customer_id FROM {$wpdb->prefix}wc_customer_lookup WHERE user_id = %d", $user_id));
@@ -2894,7 +2545,6 @@ function get_woocommerce_sales_data() {
 		wp_send_json_error('Customer ID not found for the current user.', 404);
 		return;
 	}
-
 	$type = $_POST['type'];
 	$year = $_POST['year'] ? intval($_POST['year']) : date('Y');
 	$sales_data = [];
@@ -3416,29 +3066,8 @@ function sv_use_block_editor_for_post_type_callback( $current_status, $post_type
 	return $current_status;
 }
 
-// add_filter('the_title', 'remove_parent_support_requests_from_title', 10, 2);
-// function remove_parent_support_requests_from_title($title, $post_id) {
-//     $post = get_post($post_id);
-//     if (is_admin() && $post->post_type === 'support_request') {
-//         $title = str_replace('| Parent Support Requests:', '', $title);
-//     }
-//     return $title;
-// }
-
-// Hook into WooCommerce order status change
-// add_action('woocommerce_order_status_changed', 'schedule_feedback_email', 10, 4);
-// function schedule_feedback_email($order_id, $old_status, $new_status, $order) {
-//     if ($new_status === 'delivered') {
-//         // Order is marked as delivered, schedule the feedback email
-// 		$delivery_time = time() + 30 * 60; // minutes from now
-// 		wp_schedule_single_event( $delivery_time, 'send_feedback_email', array( $order_id ) );
-//     }
-// }
-
-
 
 add_action('woocommerce_order_status_changed', 'schedule_feedback_email', 10, 4);
-
 function convert_to_seconds($duration_type, $duration_value) {
 	$seconds = 0;
 	switch ($duration_type) {
@@ -3462,7 +3091,6 @@ function schedule_feedback_email($order_id, $old_status, $new_status, $order) {
 		$minutes = get_field('minutes', 'option');
 		$days = get_field('days', 'option');
 		$hours = get_field('hours', 'option');
-
 		if($duration_type == 'minutes'){
 			$duration_value = $minutes;
 		}else if($duration_type == 'days'){
@@ -3470,12 +3098,10 @@ function schedule_feedback_email($order_id, $old_status, $new_status, $order) {
 		}else if($duration_type == 'hours'){
 			$duration_value = $hours;
 		}
-
 		// Ensure the duration value is valid
 		if ($duration_value > 0 && in_array($duration_type, array('minutes', 'hours', 'days'))) {
 			// Convert the delay to seconds
 			$delivery_time = time() + convert_to_seconds($duration_type, $duration_value);
-
 			// Schedule the feedback email
 			wp_schedule_single_event($delivery_time, 'send_feedback_email', array($order_id));
 		}
@@ -3686,5 +3312,4 @@ if ( ! function_exists( 'sv_duplicate_comment_id_callback' ) ) {
 		return null;
 	}
 }
-
 add_filter( 'duplicate_comment_id', 'sv_duplicate_comment_id_callback', 99 );
