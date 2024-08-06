@@ -342,6 +342,7 @@
 		bottom: 20px !important;
 	}
 	.woocommerce table.shop_table_responsive tbody th, .woocommerce-page table.shop_table_responsive tbody th {display: block !important; }
+	.notification_popup{max-width: initial !important;}
 }
 @media (max-width:575px) {
 	.preview_btn {flex-direction: column;}
