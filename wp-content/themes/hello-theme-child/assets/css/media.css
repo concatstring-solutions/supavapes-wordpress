@@ -421,7 +421,7 @@
 	
 
 }
-@media(max-width:430px){
+@media(max-width:440px){
 	body.woocommerce-cart .product-name a:last-child{width: 100% !important;}
 	body.woocommerce-cart .woocommerce table.shop_table_responsive  td.product-name,body.woocommerce-cart .woocommerce table.shop_table_responsive td.product-price,body.woocommerce-cart .woocommerce table.shop_table_responsive td.product-quantity {padding-left: 0 !important;}
 	body.woocommerce-cart .woocommerce table.shop_table_responsive td.product-subtotal {margin-bottom: 0 !important;padding-left: 0 !important;}
