@@ -4,10 +4,12 @@ jQuery(document).ready(function() {
 	jQuery('.button').on('click', function() {
 		var $this = jQuery(this);
 		setTimeout(function() {
-			var parent = $this.parent();
-			$this.detach(); // Remove the button temporarily
-			$this.appendTo(parent); // Re-add the button to the DOM
-		}, 100); // Ensure the detachment happens after the click event
+			$this.blur(); // Remove focus from the button
+			$this[0].style.pointerEvents = 'none'; // Temporarily disable pointer events
+			setTimeout(function() {
+				$this[0].style.pointerEvents = ''; // Re-enable pointer events
+			}, 100); // Reset pointer events after some time
+		}, 100); // Ensure the changes happen after the click event
 	});
 	
 	// jQuery( ".supa-deals-share" ).click(function(e) {
