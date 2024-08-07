@@ -40,7 +40,8 @@ $days_since_submitted = $interval->days;
     <?php elseif ($sr_status === 'Declined'): ?>
         <p><?php esc_html_e('Your request has been declined.','hello-elementor-child'); ?></p>
         <p><?php esc_html_e('Reason: ','hello-elementor-child'); ?><?php echo esc_html(get_post_meta($request_id, '_support_request_decline_reason', true)); ?></p>
-    <?php elseif ($sr_status === 'Pending' && $days_since_submitted > 0): ?>
+    <?php endif; ?>
+    <?php //elseif ($sr_status === 'Pending' && $days_since_submitted > 0): ?>
         <p><?php esc_html_e('It has been ','hello-elementor-child'); ?><?php echo esc_html($days_since_submitted); ?><?php esc_html_e(' days since you submitted the request. Still did not get a response. Do you want to follow up?','hello-elementor-child') ?></p>
         <div class="follow-up-wrapper">
             <button id="follow-up-button" class="button"><?php esc_html_e('Follow Up','hello-elementor-child'); ?></button>
@@ -50,7 +51,7 @@ $days_since_submitted = $interval->days;
                 <button id="follow-up-submit" class="button" data-request_id="<?php echo esc_attr($request_id); ?>"><?php esc_html_e('Submit','hello-elementor-child'); ?></button>
             </div>
         </div>
-    <?php endif; ?>
+   
     <section class="woocommerce-order-details">
         <h2 class="woocommerce-order-details__title"><?php esc_html_e('Support Request Details','hello-elementor-child'); ?></h2>
         <table class="woocommerce-table woocommerce-table--order-details shop_table order_details">
