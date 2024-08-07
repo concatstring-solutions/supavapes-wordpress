@@ -1,7 +1,7 @@
 jQuery(document).ready(function() {
 	jQuery('#deal-popup-video').get(0).play();
 
-	jQuery('#mc-embedded-subscribe').on('click', function() {
+	jQuery('.button').on('click', function() {
 		var $this = jQuery(this);
 		setTimeout(function() {
 			$this.trigger('mouseout'); // Manually trigger the mouseout event
