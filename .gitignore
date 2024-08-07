@@ -22,7 +22,7 @@ wp-content/*
 !wp-content/themes/
 
 # Configuration
-# !wp-config.php
+wp-config.php
 
 # Log files
 *.log
