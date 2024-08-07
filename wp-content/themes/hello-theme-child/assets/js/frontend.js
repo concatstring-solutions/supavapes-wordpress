@@ -4,9 +4,11 @@ jQuery(document).ready(function() {
 	jQuery('#mc-embedded-subscribe').on('click', function() {
 		var $this = jQuery(this);
 		setTimeout(function() {
-			$this.blur();
+			$this.trigger('mouseout'); // Manually trigger the mouseout event
+			$this.blur(); // Remove focus from the button
 		}, 100); // Ensure the blur happens after the click event
 	});
+	
 	// jQuery( ".supa-deals-share" ).click(function(e) {
 	// 	jQuery(".share-option").toggleClass("active");
 
