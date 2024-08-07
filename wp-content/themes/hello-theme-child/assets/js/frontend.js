@@ -3,14 +3,19 @@ jQuery(document).ready(function() {
 
 	jQuery('.button').on('click', function() {
 		var $this = jQuery(this);
+		
 		setTimeout(function() {
 			$this.blur(); // Remove focus from the button
-			$this[0].style.pointerEvents = 'none'; // Temporarily disable pointer events
-			setTimeout(function() {
-				$this[0].style.pointerEvents = ''; // Re-enable pointer events
-			}, 100); // Reset pointer events after some time
-		}, 100); // Ensure the changes happen after the click event
+	
+			// Force a reflow
+			var el = $this[0];
+			var display = el.style.display;
+			el.style.display = 'none';
+			el.offsetHeight; // Trigger a reflow
+			el.style.display = display;
+		}, 100); // Ensure the reflow happens after the click event
 	});
+	
 	
 	// jQuery( ".supa-deals-share" ).click(function(e) {
 	// 	jQuery(".share-option").toggleClass("active");
