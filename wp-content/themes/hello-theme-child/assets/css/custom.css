@@ -681,8 +681,9 @@ input:focus-visible { outline: none !important; }
 body.woocommerce-checkout button.wc-block-components-address-form__address_2-toggle {font-size: 16px !important;padding: 10px 20px !important;}
 body.woocommerce-checkout main fieldset{ padding: 0 !important; margin-bottom: 20px !important; }
 body.woocommerce-checkout .wc-block-components-checkout-step--with-step-number .wc-block-components-checkout-step__title:before{ position: relative !important; text-align: left !important; left: 0 !important; margin: 0 5px 0 -5px !important; }
-body.woocommerce-checkout .wc-block-components-text-input { display: flex; flex-direction: column; }
-body.woocommerce-checkout .components-base-control__field { display: flex; flex-direction: column; }
+body.woocommerce-checkout .wc-block-components-text-input { display: flex !important; flex-direction: column; }
+body.woocommerce-checkout .components-base-control__field { display: flex !important; flex-direction: column; }
+body.woocommerce-checkout .wc-block-checkout__payment-method .wc-block-components-radio-control-accordion-option:first-child{display: none !important;}
 body.woocommerce-checkout .wc-block-components-form .wc-block-components-text-input label,
 body.woocommerce-checkout .wc-block-components-text-input label, 
 body.woocommerce-checkout .wc-block-components-combobox .wc-block-components-combobox-control label.components-base-control__label,
