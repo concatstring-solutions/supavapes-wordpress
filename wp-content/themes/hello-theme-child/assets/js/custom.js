@@ -49,6 +49,10 @@ jQuery(document).ready(function() {
         if (jQuery('#checkbox-control-0').length) {
             jQuery('#checkbox-control-0').prop('checked', true);
         } 
+        if (jQuery('#radio-control-wc-payment-method-options-cod').length) {
+            jQuery('#radio-control-wc-payment-method-options-cod').prop('checked', true);
+        } 
+        
     }
    
     if (jQuery('body').hasClass('woocommerce-wishlist') && !jQuery('body').hasClass('woocommerce-account')) {
