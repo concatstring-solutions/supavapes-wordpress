@@ -3328,3 +3328,47 @@ if ( ! function_exists( 'sv_duplicate_comment_id_callback' ) ) {
 	}
 }
 add_filter( 'duplicate_comment_id', 'sv_duplicate_comment_id_callback', 99 );
+
+
+
+
+add_filter('woocommerce_available_payment_gateways', 'conditional_payment_gateways', 10, 1);
+function conditional_payment_gateways( $available_gateways ) {
+    debug($available_gateways);
+    // // Not in backend (admin)
+    // if( is_admin() ) 
+    //     return $available_gateways;
+
+    // foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+    //     $prod_variable = $prod_simple = $prod_subscription = false;
+    //     // Get the WC_Product object
+    //     $product = wc_get_product($cart_item['product_id']);
+    //     // Get the product types in cart (example)
+    //     if($product->is_type('simple')) $prod_simple = true;
+    //     if($product->is_type('variable')) $prod_variable = true;
+    //     if($product->is_type('subscription')) $prod_subscription = true;
+    // }
+    // // Remove Cash on delivery (cod) payment gateway for simple products
+    // if($prod_simple)
+    //     unset($available_gateways['cod']); // unset 'cod'
+    // // Remove Paypal (paypal) payment gateway for variable products
+    // if($prod_variable)
+    //     unset($available_gateways['paypal']); // unset 'paypal'
+    // // Remove Bank wire (Bacs) payment gateway for subscription products
+    // if($prod_subscription)
+    //     unset($available_gateways['bacs']); // unset 'bacs'
+
+    // return $available_gateways;
+}
+
+
+// function unset_stripe_credit_debit_card_methods($gateways) {
+//     if (isset($gateways['stripe'])) {
+//         unset($gateways['stripe']);
+//     }
+//     if (isset($gateways['stripe_cc'])) {
+//         unset($gateways['stripe_cc']);
+//     }
+//     return $gateways;
+// }
+// add_filter('woocommerce_payment_gateways', 'unset_stripe_credit_debit_card_methods');
