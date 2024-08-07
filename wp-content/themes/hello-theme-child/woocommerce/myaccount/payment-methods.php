@@ -27,9 +27,9 @@ do_action( 'woocommerce_before_account_payment_methods', $has_methods ); ?>
 
 <?php if ( $has_methods ) : 
 	
-	echo "innnnnnn";
+	// echo "innnnnnn";
 	
-	debug($saved_methods);
+	// debug($saved_methods);
 	?>
 
 	<table class="woocommerce-MyAccount-paymentMethods shop_table shop_table_responsive account-payment-methods-table testttt-class">
@@ -71,7 +71,7 @@ do_action( 'woocommerce_before_account_payment_methods', $has_methods ); ?>
 	</table>
 
 <?php else : 
-	echo "elseeee";
+	// echo "elseeee";
 	?>
 
 	<?php wc_print_notice( esc_html__( 'No saved methods found.', 'woocommerce' ), 'notice' ); ?>
@@ -81,7 +81,7 @@ do_action( 'woocommerce_before_account_payment_methods', $has_methods ); ?>
 <?php do_action( 'woocommerce_after_account_payment_methods', $has_methods ); ?>
 
 <?php if ( WC()->payment_gateways->get_available_payment_gateways() ) : 
-	echo "geststgghs";
+	// echo "geststgghs";
 	?>
 	<a class="button" href="<?php echo esc_url( wc_get_endpoint_url( 'add-payment-method' ) ); ?>"><?php esc_html_e( 'Add payment method', 'woocommerce' ); ?></a>
 <?php endif; ?>
