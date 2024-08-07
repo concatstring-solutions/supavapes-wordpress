@@ -23,6 +23,11 @@ defined( 'ABSPATH' ) || exit;
 /* translators: %s: Quantity. */
 $label = ! empty( $args['product_name'] ) ? sprintf( esc_html__( '%s quantity', 'woocommerce' ), wp_strip_all_tags( $args['product_name'] ) ) : esc_html__( 'Quantity', 'woocommerce' );
 
+$product = wc_get_product( $args['product_id'] );
+$backorders_allowed = $product->backorders_allowed();
+$stock_quantity = $product->get_stock_quantity();
+$max_value = $backorders_allowed ? '' : $stock_quantity;
+
 ?>
 <div class="quantity">
 	<?php
@@ -45,7 +50,7 @@ $label = ! empty( $args['product_name'] ) ? sprintf( esc_html__( '%s quantity', 
 		aria-label="<?php esc_attr_e( 'Product quantity', 'woocommerce' ); ?>"
 		size="4"
 		min="<?php echo esc_attr( $min_value ); ?>"
-		max=""
+        max="<?php echo esc_attr( $max_value ); ?>"
 		<?php if ( ! $readonly ) : ?>
 			step="<?php echo esc_attr( $step ); ?>"
 			placeholder="<?php echo esc_attr( $placeholder ); ?>"
