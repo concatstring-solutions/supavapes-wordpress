@@ -200,7 +200,7 @@ if(!empty($customer_orders)){
 			<div class="sv-active-offer-slider">
 				<?php
 				$active_offers = supa_active_offers_from_discount();
-				debug($active_offers);
+				// debug($active_offers);
 				foreach ($active_offers as $offer) {
 					$offer_title = $offer['title'];
 					$discount_value = isset($offer['discount_value']) ? $offer['discount_value'] : '';
