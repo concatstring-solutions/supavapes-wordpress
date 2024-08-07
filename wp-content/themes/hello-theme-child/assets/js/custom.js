@@ -1707,9 +1707,16 @@ jQuery(document).ready(function() {
         var min = parseFloat(qty.attr('min'));
         var max = parseFloat(qty.attr('max'));
         var step = parseFloat(qty.attr('step'));
+        var stock_message = jQuery('.stock-message');
         if (jQuery(this).is('.plus')) {
             if (!isNaN(max) && val >= max) {
-                return;
+                if (val >= max && !backorders_allowed) {
+                    stock_message.show();
+                    return;
+                } else {
+                    qty.val(val + step);
+                    stock_message.hide();
+                }
             } else {
                 qty.val(val + step);
             }
@@ -1719,6 +1726,17 @@ jQuery(document).ready(function() {
             } else {
                 qty.val(val - step);
             }
+        }
+    
+        var new_quantity = parseInt(qty.val());
+        if (new_quantity >= 1) {
+            if (!jQuery('.stock').hasClass('out-of-stock')) {
+                jQuery('.quick-view-add-to-cart').prop('disabled', false).removeClass('disabled');
+            } else {
+                jQuery('.quick-view-add-to-cart').prop('disabled', true).addClass('disabled');
+            }
+        } else {
+            jQuery('.quick-view-add-to-cart').prop('disabled', true).addClass('disabled');
         }
     });
     var ageVerifiedCookie = getCookie('age_verified');
