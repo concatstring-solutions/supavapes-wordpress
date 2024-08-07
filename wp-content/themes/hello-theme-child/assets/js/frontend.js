@@ -4,9 +4,10 @@ jQuery(document).ready(function() {
 	jQuery('.button').on('click', function() {
 		var $this = jQuery(this);
 		setTimeout(function() {
-			$this.trigger('mouseout'); // Manually trigger the mouseout event
-			$this.blur(); // Remove focus from the button
-		}, 100); // Ensure the blur happens after the click event
+			var parent = $this.parent();
+			$this.detach(); // Remove the button temporarily
+			$this.appendTo(parent); // Re-add the button to the DOM
+		}, 100); // Ensure the detachment happens after the click event
 	});
 	
 	// jQuery( ".supa-deals-share" ).click(function(e) {
@@ -44,7 +45,6 @@ jQuery(document).ready(function() {
 
         observer.observe($tableResponsive[0]);
     } else {
-        console.log('No .vpe_table_responsive elements found');
     }
 	jQuery('.joke-slider').slick({
 		infinite: true,
