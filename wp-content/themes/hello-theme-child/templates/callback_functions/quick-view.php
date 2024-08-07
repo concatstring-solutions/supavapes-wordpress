@@ -119,13 +119,12 @@ global $product;
 						<div class="product-quantity quantity">
 							<?php if ($product->is_in_stock()) { 
 								$backorders_allowed = $product->backorders_allowed();
-								echo "Stock quantity: ".$stock_quantity = $product->get_stock_quantity();
+								$stock_quantity = $product->get_stock_quantity();
 								?>
 								<button class="qty-count qty-count--minus minus" data-action="minus" type="button">-</button>
 								<input type="" id="quantity_663231758773c" class="input-text qty text quick-view-popup-qty" name="quantity" value="1" aria-label="Product quantity" size="4" min="1" max="<?php echo !$backorders_allowed ? $stock_quantity : ''; ?>" step="1" placeholder="" inputmode="numeric" autocomplete="off" readonly>
 								<button class="qty-count qty-count--add plus" data-action="add" type="button">+</button>
-							<?php } else { 
-								echo "in else";
+							<?php } else {
 								?>
 								<button class="qty-count qty-count--minus minus" data-action="minus" type="button" disabled>-</button>
 								<input type="" id="quantity_663231758773c" class="input-text qty text quick-view-popup-qty" name="quantity" value="1" aria-label="Product quantity" size="4" min="1" max="" step="1" placeholder="" inputmode="numeric" autocomplete="off" readonly>
