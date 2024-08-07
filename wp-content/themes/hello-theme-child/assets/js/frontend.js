@@ -1,6 +1,12 @@
 jQuery(document).ready(function() {
 	jQuery('#deal-popup-video').get(0).play();
 
+	jQuery('#mc-embedded-subscribe').on('click', function() {
+		var $this = jQuery(this);
+		setTimeout(function() {
+			$this.blur();
+		}, 100); // Ensure the blur happens after the click event
+	});
 	// jQuery( ".supa-deals-share" ).click(function(e) {
 	// 	jQuery(".share-option").toggleClass("active");
 
@@ -283,11 +289,6 @@ function updateSelectedItems() {
     jQuery('.upload-img-list').on('click', '.remove-icon', function() {
         jQuery(this).closest('.customer-support-img-box').remove();
     });
-	jQuery('.button').on('click', function() {
-		var $this = jQuery(this);
-		setTimeout(function() {
-			$this.blur();
-		}, 0); // Ensure the blur happens after the click event
-	});
+	
 	 
 });
