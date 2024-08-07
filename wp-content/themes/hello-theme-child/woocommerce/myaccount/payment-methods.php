@@ -27,7 +27,10 @@ do_action( 'woocommerce_before_account_payment_methods', $has_methods ); ?>
 
 <?php if ( $has_methods ) : 
 	
-	echo "innnnnnn";?>
+	echo "innnnnnn";
+	
+	debug($saved_methods);
+	?>
 
 	<table class="woocommerce-MyAccount-paymentMethods shop_table shop_table_responsive account-payment-methods-table testttt-class">
 		<thead>
