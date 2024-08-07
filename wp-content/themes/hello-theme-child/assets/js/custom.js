@@ -121,6 +121,10 @@ jQuery(document).ready(function() {
                 if (response.success) {
                     
                     jQuery('#follow-up-message').html('<div class="followup-success-message">Follow-up message sent successfully.</div>');
+                    jquery('#follow-up-text').val('');
+                    setTimeout(function() {
+                        jQuery('.followup-success-message').fadeOut();
+                    }, 2000);
                     setTimeout(function() {
                         jQuery('#follow-up-form').hide();
                     }, 3000);
@@ -250,6 +254,12 @@ jQuery(document).ready(function() {
                         jQuery('.sv-email-modal').hide();
                     }, 5000);
                     jQuery('body').removeClass('sv-popup-open');
+
+                    // jQuery('.customer-support')[0].reset();
+
+                    jQuery('.options-container .option input').prop('checked', false);
+                    jQuery('.fileImgInput').val('');
+                    jQuery('#additional-info').val('');
                 } else {
                     console.error('Error:', response.data);
                 }
