@@ -1109,7 +1109,7 @@ div#mc_embed_signup .mc-field-group input { background: transparent; border: 1px
 .footer-subscribe-form .mce_inline_error { background: transparent !important; padding-left: 20px !important; margin-bottom: 0 !important; }
 .footer-subscribe-form .mc-field-group { padding-bottom: 15px !important; }
 .footer-subscribe-form .indicates-required { display: none; }
-.footer-subscribe-form div#mce-error-response, .footer-subscribe-form div#mce-success-response { margin: 0 0 15px !important; padding: 0 !important; font-size: 20px !important; }
+.footer-subscribe-form div#mce-error-response, .footer-subscribe-form div#mce-success-response { margin: 0 0 15px !important; padding: 0 !important; font-size: 20px !important;width: 100% !important; }
 .heart { display: inline-block; width: 10px; height: 10px; background-color: #ff0000; position: relative; top: 1px; margin-left: 10px; transform: rotate(-45deg); animation: beat 3.5s infinite; }
 .heart::before, .heart::after { content: ""; width: 10px; height: 10px; background-color: #ff0000; border-radius: 50%; position: absolute; }
 .heart::before { top: -5px; left: 0; }
