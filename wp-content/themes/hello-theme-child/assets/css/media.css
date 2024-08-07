@@ -451,4 +451,8 @@
         position: relative !important;
         margin: 10px auto 0 !important;
     }
+	div#radix-\:r5\: {
+		width: 90% !important;
+		height: 70% !important;
+	}
 }
