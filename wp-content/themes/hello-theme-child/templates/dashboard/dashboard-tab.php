@@ -214,7 +214,7 @@ if(!empty($customer_orders)){
 					$shop_now_url = ''; 
 					$image_url = '';
 					if (!empty($product_category)) {
-						$term_val = get_term($product_category);
+						echo "Term val: ".$term_val = get_term($product_category);
 						if ($term && !is_wp_error($term_val)) {
 							$title_to_display = $term_val->name;
 							$shop_now_url = get_term_link($term_val);
