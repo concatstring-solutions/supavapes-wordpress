@@ -198,70 +198,72 @@ if(!empty($customer_orders)){
 		<div class="dashboard-box sv-active-offer-box">
 			<h3 class="dashboard-box-title"><?php esc_html_e('Active Offers','hello-elementor-child'); ?></h3>
 			<div class="sv-active-offer-slider">
-				<?php
-				$active_offers = supa_active_offers_from_discount();
-				// debug($active_offers);
-				foreach ($active_offers as $offer) {
-					$offer_title = $offer['title'];
-					$discount_value = isset($offer['discount_value']) ? $offer['discount_value'] : '';
-					$product_category = isset($offer['product_category'][0]) ? $offer['product_category'][0] : '';
-					$products = isset($offer['products']) ? $offer['products'] : '';
-					$buy_type = isset($offer['buy_type']) ? $offer['buy_type'] : '';
-					$buy = isset($offer['buy']) ? $offer['buy'] : '';
-					$free_qty = isset($offer['free_qty']) ? $offer['free_qty'] : '';
-					$free_products = isset($offer['free_products']) ? $offer['free_products'] : '';
-					$title_to_display = '';
-					$shop_now_url = ''; 
-					$image_url = '';
-					if (!empty($product_category)) {
-						$term_val = get_term($product_category);
-						// debug($term_val);
-						if ($term && !is_wp_error($term_val)) {
-							$title_to_display = $term_val->name;
-							$shop_now_url = get_term_link($term_val);
-							$thumbnail_id = get_term_meta($product_category, 'thumbnail_id', true);
-							if ($thumbnail_id) {
-								$image_url = wp_get_attachment_url($thumbnail_id);
-							}
-						}
-					} elseif (!empty($products)) {
-						$product = wc_get_product($products[0]);
-						if ($product) {
-							$title_to_display = $product->get_name();
-							$shop_now_url = get_permalink($product->get_id());
-							$image_id = $product->get_image_id();
-							if ($image_id) {
-								$image_url = wp_get_attachment_url($image_id);
-							}
-						}
-					}
-					?>
-					<div class="sv-deals-item-box">
-						<div class="box-text">
-							<?php if (!empty($buy)) : ?>
-								<span><?php esc_html_e('BUY','hello-elementor-child'); ?><?php echo esc_html($buy); ?></span>
-							<?php endif; ?>
-							<h4><?php echo esc_html($title_to_display); ?></h4>
-							<?php if (!empty($discount_value)) { ?>
-								<h4><?php esc_html_e('Get ','hello-elementor-child'); ?><span><?php echo esc_html($discount_value); ?></span></h4>
-							<?php } else if (!empty($free_qty)) { ?>
-								<h4><?php esc_html_e('Get ','hello-elementor-child'); ?><span><?php echo esc_html($free_qty . " Free"); ?></span></h4>
-							<?php } ?>
-							<div class="sv-delas-item-list">
-								<ul><li><?php esc_html_e('Conditions may apply','hello-elementor-child'); ?></li></ul>
-							</div>
-							<a href="<?php echo esc_url($shop_now_url); ?>" tabindex="-1"><?php esc_html_e('Shop Now','hello-elementor-child'); ?></a>
-						</div>
-						<div class="box-image">
-							<?php if (!empty($image_url)) : ?>
-								<img src="<?php echo esc_url($image_url); ?>" alt="image">
-							<?php else : ?>
-								<img src="/wp-content/uploads/2024/07/placeholedr-img.png" alt="default image">
-							<?php endif; ?>
-						</div>
-					</div>
-				<?php } ?>
-			</div>
+    <?php
+    $active_offers = supa_active_offers_from_discount();
+    // debug($active_offers);
+    foreach ($active_offers as $offer) {
+        $offer_title = $offer['title'];
+        $discount_value = isset($offer['discount_value']) ? $offer['discount_value'] : '';
+        $product_category = isset($offer['product_category'][0]) ? $offer['product_category'][0] : '';
+        $products = isset($offer['products']) ? $offer['products'] : '';
+        $buy_type = isset($offer['buy_type']) ? $offer['buy_type'] : '';
+        $buy = isset($offer['buy']) ? $offer['buy'] : '';
+        $free_qty = isset($offer['free_qty']) ? $offer['free_qty'] : '';
+        $free_products = isset($offer['free_products']) ? $offer['free_products'] : '';
+        $title_to_display = '';
+        $shop_now_url = ''; 
+        $image_url = '';
+
+        if (!empty($product_category)) {
+            $term_val = get_term($product_category);
+            // debug($term_val);
+            if ($term_val && !is_wp_error($term_val)) {
+                $title_to_display = $term_val->name;
+                $shop_now_url = get_term_link($term_val);
+                $thumbnail_id = get_term_meta($product_category, 'thumbnail_id', true);
+                if ($thumbnail_id) {
+                    $image_url = wp_get_attachment_url($thumbnail_id);
+                }
+            }
+        } elseif (!empty($products)) {
+            $product = wc_get_product($products[0]);
+            if ($product) {
+                $title_to_display = $product->get_name();
+                $shop_now_url = get_permalink($product->get_id());
+                $image_id = $product->get_image_id();
+                if ($image_id) {
+                    $image_url = wp_get_attachment_url($image_id);
+                }
+            }
+        }
+        ?>
+        <div class="sv-deals-item-box">
+            <div class="box-text">
+                <?php if (!empty($buy)) : ?>
+                    <span><?php esc_html_e('BUY','hello-elementor-child'); ?> <?php echo esc_html($buy); ?></span>
+                <?php endif; ?>
+                <h4><?php echo esc_html($title_to_display); ?></h4>
+                <?php if (!empty($discount_value)) { ?>
+                    <h4><?php esc_html_e('Get ','hello-elementor-child'); ?><span><?php echo esc_html($discount_value); ?></span></h4>
+                <?php } else if (!empty($free_qty)) { ?>
+                    <h4><?php esc_html_e('Get ','hello-elementor-child'); ?><span><?php echo esc_html($free_qty . " Free"); ?></span></h4>
+                <?php } ?>
+                <div class="sv-delas-item-list">
+                    <ul><li><?php esc_html_e('Conditions may apply','hello-elementor-child'); ?></li></ul>
+                </div>
+                <a href="<?php echo esc_url($shop_now_url); ?>" tabindex="-1"><?php esc_html_e('Shop Now','hello-elementor-child'); ?></a>
+            </div>
+            <div class="box-image">
+                <?php if (!empty($image_url)) : ?>
+                    <img src="<?php echo esc_url($image_url); ?>" alt="image">
+                <?php else : ?>
+                    <img src="/wp-content/uploads/2024/07/placeholedr-img.png" alt="default image">
+                <?php endif; ?>
+            </div>
+        </div>
+    <?php } ?>
+</div>
+
 		</div>
 		<div class="dashboard-box joke-slider">
 		<?php
