@@ -259,6 +259,23 @@ jQuery(document).ready(function() {
             }
         });
     });
+
+
+    // Remove error messages when an image is uploaded
+    jQuery(document).on('change', '.fileImgInput', function() {
+        if (jQuery(this).val()) {
+            jQuery('#image-upload-error').hide();
+        }
+    });
+
+    // Remove error messages when an item is selected
+    jQuery(document).on('change', '.options-container .option input', function() {
+        if (jQuery('.options-container .option input:checked').length > 0) {
+            jQuery('#item-selection-error').hide();
+        }
+    });
+
+
     jQuery('.approve-support-request').on('click', function(e) {
         e.preventDefault();
         var post_id = jQuery(this).data('id');
