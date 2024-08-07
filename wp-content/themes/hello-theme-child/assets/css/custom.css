@@ -1305,6 +1305,7 @@ body.home.light-theme .deal-popup .deal-popup-content {background-color: var(--w
 body.home.light-theme .deal-popup-right p, body.home.light-theme .deal-popup-right h2 {color: #040404;}
 body.home.light-theme .deal-popup .deal-popup-close svg *{fill: var(--primary-palette-carmine-pink);}
 body.home.light-theme .widget_shopping_cart_content .view-all-btn {border: 1px solid var(--white);color: var(--white) !important;}
+body.home.light-theme input:-webkit-autofill,body.home.light-theme input:-webkit-autofill:hover,body.home.light-theme input:-webkit-autofill:focus,body.home.light-theme input:-webkit-autofill:active { transition: background-color 5000s ease-in-out 0s; -webkit-text-fill-color: var(--black) !important; }
 /* light mode dark mode header icon */
 .theme_switch_box {display: flex;align-items: center;justify-content: center;}
 .theme_switch_box label{display: flex;width: 100%;}
