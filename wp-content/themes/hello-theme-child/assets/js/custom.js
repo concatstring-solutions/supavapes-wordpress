@@ -121,7 +121,7 @@ jQuery(document).ready(function() {
                 if (response.success) {
                     
                     jQuery('#follow-up-message').html('<div class="followup-success-message">Follow-up message sent successfully.</div>');
-                    jquery('#follow-up-text').val('');
+                    jQuery('#follow-up-text').val('');
                     setTimeout(function() {
                         jQuery('.followup-success-message').fadeOut();
                     }, 2000);
