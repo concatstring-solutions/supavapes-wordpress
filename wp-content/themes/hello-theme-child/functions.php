@@ -3332,9 +3332,9 @@ add_filter( 'duplicate_comment_id', 'sv_duplicate_comment_id_callback', 99 );
 
 
 
-add_filter('woocommerce_available_payment_gateways', 'conditional_payment_gateways', 10, 1);
+// add_filter('woocommerce_available_payment_gateways', 'conditional_payment_gateways', 10, 1);
 function conditional_payment_gateways( $available_gateways ) {
-    debug($available_gateways);
+    // debug($available_gateways);
     // // Not in backend (admin)
     // if( is_admin() ) 
     //     return $available_gateways;
