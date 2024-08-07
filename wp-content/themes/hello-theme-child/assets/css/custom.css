@@ -369,6 +369,7 @@ body.single-product #wqcmv-manage-outofstock-products-modal .modal-content .wqcm
 body.single-product .wqcmv_product_table table tbody tr:nth-child(odd) { background-color: transparent !important; }
 body.single-product .wqcmv_product_table table tr { border-bottom: none !important; text-align: left !important; }
 body.single-product .wqcmv_product_table { max-height: initial !important; }
+body.single-product #wqcmv-manage-outofstock-products-modal .notification_popup{display: none !important;}
 body.single-product #wqcmv-manage-outofstock-products-modal .modal-content .modal-header { background-color: var(--white-light) !important; }
 body.single-product.variable-product .cartRow .cartItem { max-width: initial; width: 100%; display: flex; gap: 15px; align-items: center; height: 100%; }
 body.single-product.variable-product .cartRow img { width: 100%; height: auto; padding: 0px; }
