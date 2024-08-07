@@ -1341,9 +1341,8 @@ if ( ! function_exists( 'debug' ) ) {
 * @since 1.0.0 
 */
 function sv_send_selected_value() {
-
 	// check_ajax_referer('fun_questionnaire_nonce', 'security');
-	if ( isset($_POST['selectedValues']) && isset($_POST['quizemail']) ) {
+	if (isset($_POST['selectedValues']) && isset($_POST['quizemail'])) {
 		$selectedValues = json_decode(stripslashes($_POST['selectedValues']), true);
 		$quizemail = sanitize_email($_POST['quizemail']);
 		$emails_to_add = array($quizemail);
@@ -1360,17 +1359,31 @@ function sv_send_selected_value() {
 		if ($result === 'pass') {
 			$coupon_code = sv_generate_unique_coupon_code();
 			sv_create_coupon($coupon_code, $emails_to_add);
-			// do_action('send_fun_questionnaire_email','Result',$coupon_code);
+			// Send email
+			sv_send_quiz_email($quizemail, $coupon_code);
 		}
 		wp_send_json_success(array('result' => $result, 'coupon_code' => $coupon_code));
-		wp_send_json_success($result);
 	} else {
 		wp_send_json_error('selectedValues or quizemail is missing');
 	}
-
 }
 add_action('wp_ajax_send_selected_value', 'sv_send_selected_value');
 add_action('wp_ajax_nopriv_send_selected_value', 'sv_send_selected_value');
+
+/**
+ * Function to send the quiz result email.
+ *
+ * @param string $email Recipient email address.
+ * @param string $coupon_code Generated coupon code.
+ */
+function sv_send_quiz_email($email, $coupon_code) {
+	$subject = 'Quiz Result: You Passed!';
+	$message = 'Congratulations! You have passed the quiz. Your coupon code is: ' . $coupon_code;
+	$headers = array('Content-Type: text/html; charset=UTF-8');
+
+	wp_mail($email, $subject, $message, $headers);
+}
+
 
 
 function sv_modify_custom_post_type_query($query) {
