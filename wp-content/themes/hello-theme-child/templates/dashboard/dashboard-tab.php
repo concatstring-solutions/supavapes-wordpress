@@ -170,10 +170,12 @@ if(!empty($customer_orders)){
 					$last_login_device = get_user_meta($user_id, 'last_login_device', true);
 			?>
 			<div class="dashboard-box-data">
-				<div class="dashboard-box-data-detail">
-					<label class="dashboard-box-data-lable"><?php esc_html_e('Device & Browser','hello-elementor-child'); ?></label>
-					<p class="dashboard-box-data-value"><?php echo esc_html__($last_login_device,'hello-elementor-child'); ?> | <?php echo esc_html__($last_login_browser,'hello-elementor-child'); ?></p>
-				</div>
+				<?php if(isset($last_login_device) && !empty($last_login_device)){?>
+					<div class="dashboard-box-data-detail">
+						<label class="dashboard-box-data-lable"><?php esc_html_e('Device & Browser','hello-elementor-child'); ?></label>
+						<p class="dashboard-box-data-value"><?php echo esc_html__($last_login_device,'hello-elementor-child'); ?> | <?php echo esc_html__($last_login_browser,'hello-elementor-child'); ?></p>
+					</div>
+				<?php }?>
 				<?php if(!empty($formatted_last_login)){?>
 					<div class="dashboard-box-data-detail">
 						<label class="dashboard-box-data-lable"><?php echo esc_html__('Date','hello-elementor-child'); ?></label>
