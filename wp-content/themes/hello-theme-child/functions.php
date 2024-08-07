@@ -19,7 +19,7 @@ include 'includes/classes/class-wc-custom-emails-manager.php';
 include 'includes/classes/class-wc-custom-sms-manager.php';
 include 'includes/classes/class-mailchimp-subscribers-table.php';
 
-include HELLO_ELEMENTOR_CHILD_THEME_PATH .'/integration/functions.php';
+// include HELLO_ELEMENTOR_CHILD_THEME_PATH .'/integration/functions.php';
 
 /**
  * Load child theme scripts & styles.
