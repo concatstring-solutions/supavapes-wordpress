@@ -21,6 +21,7 @@ body.single-product,body.home {background-color: var(--black);}
 .design-by:hover{color: var(--primary-palette-carmine-pink) !important;}
 body.admin-bar .main-nav.sticky{top: 32px;}
 body.sv-popup-open{overflow: hidden;}
+a:focus-visible{outline: none !important;}
 nav.woocommerce-breadcrumb {position: absolute;top: 20px;margin: 0 !important;left: 20px !important;font-size: 16px !important;color: var(--primary-palette-carmine-pink) !important; width: calc(100% - 40px);}
 /* Optional: Add animation */
 @keyframes fadeOut {0% { opacity: 1; } 100% { opacity: 0; }}
