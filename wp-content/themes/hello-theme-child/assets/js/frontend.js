@@ -3,20 +3,18 @@ jQuery(document).ready(function() {
 
 	jQuery('.button').on('click', function() {
 		var $this = jQuery(this);
-		
+	
 		setTimeout(function() {
 			$this.blur(); // Remove focus from the button
 	
-			// Force a reflow
-			var el = $this[0];
-			var display = el.style.display;
-			el.style.display = 'none';
-			el.offsetHeight; // Trigger a reflow
-			el.style.display = display;
-		}, 100); // Ensure the reflow happens after the click event
+			// Create a clone of the element
+			var clone = $this.clone(true);
+			
+			// Replace the original element with the clone
+			$this.replaceWith(clone);
+		}, 100); // Ensure this happens after the click event
 	});
-	
-	
+
 	// jQuery( ".supa-deals-share" ).click(function(e) {
 	// 	jQuery(".share-option").toggleClass("active");
 
