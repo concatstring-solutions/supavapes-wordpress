@@ -24,9 +24,12 @@ defined( 'ABSPATH' ) || exit;
 $label = ! empty( $args['product_name'] ) ? sprintf( esc_html__( '%s quantity', 'woocommerce' ), wp_strip_all_tags( $args['product_name'] ) ) : esc_html__( 'Quantity', 'woocommerce' );
 // debug($args);
 $product = wc_get_product( $args['product_id'] ); // Get the product using the passed product ID
-$backorders_allowed = $product->backorders_allowed();
-$stock_quantity = $product->get_stock_quantity();
-$max_value = $backorders_allowed ? '' : $stock_quantity;
+if($product){
+	$backorders_allowed = $product->backorders_allowed();
+	$stock_quantity = $product->get_stock_quantity();
+	$max_value = $backorders_allowed ? '' : $stock_quantity;
+
+}
 
 ?>
 <div class="quantity">
@@ -42,7 +45,7 @@ $max_value = $backorders_allowed ? '' : $stock_quantity;
 	<button class="qty-count qty-count--minus minus" data-action="minus" type="button">-</button>
 	<input
 		type="number"
-		<?php echo $readonly ? 'readonly="readonly"' : ''; ?>
+		readonly
 		id="<?php echo esc_attr( $input_id ); ?>"
 		class="<?php echo esc_attr( join( ' ', (array) $classes ) ); ?>"
 		name="<?php echo esc_attr( $input_name ); ?>"
