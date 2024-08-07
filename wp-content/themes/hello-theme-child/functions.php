@@ -3022,7 +3022,7 @@ function capture_browser_device_info($user_login, $user) {
 	// update_user_meta($user_id, 'last_login_ip', $_SERVER['REMOTE_ADDR']);
 }
 add_action('wp_login', 'capture_browser_device_info', 10, 2);
-add_action('woocommerce_created_customer', 'capture_browser_device_info', 10, 1);
+// add_action('woocommerce_created_customer', 'capture_browser_device_info', 10, 1);
 
 
 // Function to get device name from user agent string
