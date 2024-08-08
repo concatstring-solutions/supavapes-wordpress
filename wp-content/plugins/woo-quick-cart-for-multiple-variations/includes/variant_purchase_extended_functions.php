@@ -214,15 +214,15 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 							$qty_not_available = 'Not In Stock';
 							echo "Stock in cart: ".$stock_in_cart;
 							if ( $prod_stock_class === 'product-not-in-stock' || $prod_stock_class === 'product-not-in-stock backorders-not-allowed' || isset( $stock_in_cart ) && true === $stock_in_cart ) {
-								if ( ! $stock_availibility ) {
-									echo "innn";
+								// if ( ! $stock_availibility ) {
+									// echo "innn";
 									/*
 
 									<button type="button" name="wqcmv_notify" class="btn" id="notify_me" data-variation-id="<?php echo esc_attr( $variation_id ); ?>"><?php echo esc_html__( apply_filters( 'wqcmv_change_notify_me_text', 'Notify Me', $variation_id ), 'woocommerce-quick-cart-for-multiple-variations' ); ?></button> 
 									*/
 									?>
 									<button type="button" name="wqcmv_notify" class="btn" id="vns_pre_order" data-variation-id="<?php echo esc_attr( $variation_id ); ?>"><?php echo esc_html__( apply_filters( 'wqcmv_change_notify_me_text', 'Pre Order', $variation_id ), 'woocommerce-quick-cart-for-multiple-variations' ); ?></button> 
-								<?php } ?>
+								<?php //} ?>
 								<!-- <button class="btn"> Notify Me</button> -->
 							<?php } else { ?>
 								<label>Qty:</label>
