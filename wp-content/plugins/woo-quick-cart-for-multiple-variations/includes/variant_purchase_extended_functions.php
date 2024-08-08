@@ -214,6 +214,7 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 							$qty_not_available = 'Not In Stock';
 							// $stock_in_cart;
 							if ( $prod_stock_class === 'product-not-in-stock' || $prod_stock_class === 'product-not-in-stock backorders-not-allowed' || isset( $stock_in_cart ) && true === $stock_in_cart ) {
+								echo "availability: ".$stock_availibility;
 								// if ( ! $stock_availibility ) {
 									// echo "innn";
 									/*
