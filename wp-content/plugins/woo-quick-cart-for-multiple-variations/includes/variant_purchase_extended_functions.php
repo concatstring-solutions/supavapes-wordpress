@@ -209,7 +209,7 @@ function wqcmv_fetch_product_block_html( $variation_id = 0, $changed_variations 
 				</div>
 				<div class="quantity">
 					<label class="vpn_product_label"><?php echo esc_html__("Quantity",'woocommerce-quick-cart-for-multiple-variations'); ?></label>
-						<div class="qtyCount">
+						<div class="qtyCount test-quantity-class">
 							<?php
 							$qty_not_available = 'Not In Stock';
 							if ( $prod_stock_class === 'product-not-in-stock' || $prod_stock_class === 'product-not-in-stock backorders-not-allowed' || isset( $stock_in_cart ) && true === $stock_in_cart ) {
