@@ -71,6 +71,7 @@
  
  <?php 
  $available_gateways = WC()->payment_gateways->get_available_payment_gateways();
+ debug($available_gateways);
  if ( $available_gateways ) : 
 	 ?>
 	 <a class="button" href="<?php echo esc_url( wc_get_endpoint_url( 'add-payment-method' ) ); ?>"><?php esc_html_e( 'Add payment method', 'woocommerce' ); ?></a>
