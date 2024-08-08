@@ -13,6 +13,10 @@ jQuery(window).on("load", function() {
             return false;
         }
     });
+
+    if (jQuery('body').hasClass('woocommerce-checkout')) {
+        jQuery('.wc-block-components-checkout-place-order-button').addClass('cod-payment');
+    }
 });
 jQuery(document).ready(function() {
 
