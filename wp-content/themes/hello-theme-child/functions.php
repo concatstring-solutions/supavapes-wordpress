@@ -3347,3 +3347,15 @@ function sv_disable_credit_card_woocommerce_payments($available_gateways) {
 
 	return $available_gateways;
 }
+
+
+add_filter( 'woocommerce_payment_gateway_supports', 'filter_payment_gateway_supports', 10, 3 );
+function filter_payment_gateway_supports( $supports, $feature, $payment_gateway ) {
+    // Here in the array, set the allowed payment method IDs (slugs)
+    $allowed_payment_method_ids = array('bacs', 'cheque', 'cod');
+
+    if ( in_array($payment_gateway->id, $allowed_payment_method_ids ) && $feature === 'add_payment_method' ) {
+        $supports = true;
+    }
+    return $supports;
+}
