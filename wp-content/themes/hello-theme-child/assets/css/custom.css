@@ -1540,3 +1540,14 @@ input#submit:hover {background-color: transparent;}
 .woocommerce-lost-password .woocommerce .woocommerce-ResetPassword .woocommerce-form-row .password-input input {order: 1;}
 .woocommerce-lost-password .woocommerce .woocommerce-ResetPassword .woocommerce-form-row .password-input .woocommerce-password-strength {order: 2;margin: .5em 0 0;}
 .woocommerce-lost-password .woocommerce .woocommerce-ResetPassword .woocommerce-form-row .password-input .woocommerce-password-hint {order: 3;}
+
+
+.quantity input[type=number]::-webkit-outer-spin-button,
+.quantity input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.quantity input[type=number] {
+    -moz-appearance:textfield;
+}
