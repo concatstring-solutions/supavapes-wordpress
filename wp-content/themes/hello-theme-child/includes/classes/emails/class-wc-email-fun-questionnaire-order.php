@@ -38,8 +38,8 @@ if ( ! class_exists( 'WC_Email_Fun_Questionnaire_Order', false ) ) :
 
 			$this->title          = __( 'Fun Questionnaire', 'hello-elementor-child' );
 			$this->description    = __( 'An email sent to the customer when they pass the quize.', 'hello-elementor-child' );
-			$this->template_html  = 'emails/customer-custom-email.php';
-			$this->template_plain = 'emails/plain/customer-custom-email.php';
+			$this->template_html  = 'emails/customer-fun-questionnaire-order.php';
+			$this->template_plain = 'emails/plain/customer-fun-questionnaire-order.php';
 			$this->placeholders   = array();
 
 			// Call parent constructor.
@@ -101,7 +101,6 @@ if ( ! class_exists( 'WC_Email_Fun_Questionnaire_Order', false ) ) :
 				$this->template_html,
 				array(
 					'email_heading'      => $this->get_heading(),
-					'coupon_code'		 => $this->get_coupon_code(),
 					'sent_to_admin'      => false,
 					'plain_text'         => false,
 					'email'              => $this,
@@ -119,7 +118,6 @@ if ( ! class_exists( 'WC_Email_Fun_Questionnaire_Order', false ) ) :
 				$this->template_plain,
 				array(
 					'email_heading'      => $this->get_heading(),
-					'coupon_code'		 => $this->get_coupon_code(),
 					'sent_to_admin'      => false,
 					'plain_text'         => true,
 					'email'              => $this,
@@ -158,6 +156,16 @@ if ( ! class_exists( 'WC_Email_Fun_Questionnaire_Order', false ) ) :
 				$email_content = $email_templates[ $this->email_template_name ];
 			}
 			return apply_filters( 'woocommerce_email_custom_content_' . $this->id, $this->format_string( $email_content ), $this->object, $this );
+		}
+
+		/**
+		 * Default content to show below main email content.
+		 *
+		 * @return string
+		 * @since 3.7.0
+		 */
+		public function get_default_additional_content() {
+			return __( 'Thanks for using {site_url}!', 'hello-elementor-child' );
 		}
 	}
 

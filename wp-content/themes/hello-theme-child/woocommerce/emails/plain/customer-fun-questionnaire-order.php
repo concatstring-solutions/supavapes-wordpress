@@ -1,6 +1,6 @@
 <?php
 /**
- * Customer out of delivery order email
+ * Customer Support request email
  *
  * HOWEVER, on occasion WooCommerce will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to
@@ -15,9 +15,21 @@
 
 defined( 'ABSPATH' ) || exit;
 
+$email_templates = get_field( 'email_templates', 'option' );
+
 echo "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n";
 echo esc_html( wp_strip_all_tags( $email_heading ) );
 echo "\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n";
 
-echo "123";
+
+echo "\n\n----------------------------------------\n\n";
+$email_content = '';
+if ( isset( $email_templates['support_request'] ) ) {
+	$email_content = $email_templates['support_request'];
+}
+echo esc_html( wp_strip_all_tags( wptexturize( $email_content ) ) );
+
+echo "\n\n----------------------------------------\n\n";
+
+
 echo wp_kses_post( apply_filters( 'woocommerce_email_footer_text', get_option( 'woocommerce_email_footer_text' ) ) );

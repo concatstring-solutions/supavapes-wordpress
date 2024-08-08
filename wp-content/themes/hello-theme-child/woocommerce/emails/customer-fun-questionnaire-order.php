@@ -1,6 +1,6 @@
 <?php
 /**
- * Customer shipment reawdy order email
+ * Customer Support Request
  *
  * HOWEVER, on occasion WooCommerce will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to
@@ -16,18 +16,17 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
+$email_templates = get_field( 'email_templates', 'option' );
 /*
  * @hooked WC_Emails::email_header() Output the email header
  */
 do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
 <?php /* translators: %s: Customer first name */ ?>
-<p><?php printf( esc_html__( 'Hi Cudyomrt,', 'woocommerce' ), esc_html( $order->get_billing_first_name() ) ); ?></p>
-<?php /* translators: %s: Order number */ ?>
-<p><?php echo esc_html__( 'Just to let you know &mdash; we\'ve received your , and it is now being processed:', 'woocommerce' ) ; ?></p>
+
 
 <?php
+echo wp_kses_post( wpautop( wptexturize( $email->get_custom_content( $email_templates ) ) ) );
 
 
 /*
