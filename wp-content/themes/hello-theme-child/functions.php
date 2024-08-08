@@ -1361,7 +1361,13 @@ function sv_send_selected_value() {
 			$coupon_code = sv_generate_unique_coupon_code();
 			sv_create_coupon($coupon_code, $emails_to_add);
 			// Send email
-			sv_send_quiz_email($quizemail, $coupon_code);
+			// sv_send_quiz_email($quizemail, $coupon_code);
+
+				$extra_data = array(
+					'{coupon_code}'   => $coupon_code
+				);
+			
+				WC()->mailer()->emails['WC_Email_Fun_Questionnaire_Order']->trigger( $quizemail, $extra_data );
 		}
 		wp_send_json_success(array('result' => $result, 'coupon_code' => $coupon_code));
 	} else {
