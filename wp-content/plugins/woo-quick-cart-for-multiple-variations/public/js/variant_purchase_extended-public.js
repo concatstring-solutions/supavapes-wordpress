@@ -1093,6 +1093,7 @@ jQuery(document).ready(function ($) {
                     // $('.notification_popup.success').fadeOut(3000);
                     $('#wqcmv-manage-outofstock-products-modal').fadeOut(2000);
                     jQuery('body').removeClass('sv-popup-open');
+                    location.reload(true);
 
                 }
             },
@@ -1212,6 +1213,8 @@ jQuery(document).ready(function ($) {
                         $('.notification_message .title').html('Request sent successfully');
                         $('.notification_popup.success').fadeOut(3000);
                         $('#wqcmv-manage-outofstock-products-modal').fadeOut(2000);
+                        
+
                     }
                 },
 

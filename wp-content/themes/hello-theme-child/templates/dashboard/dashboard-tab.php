@@ -107,7 +107,7 @@ if(!empty($customer_orders)){
 			<?php 
 				$user_id = get_current_user_id();
 				$email = get_user_meta( $user_id, 'email', true );
-				$whatsapp = get_user_meta( $user_id, 'whatsapp', true );
+				// $whatsapp = get_user_meta( $user_id, 'whatsapp', true );
 				$sms = get_user_meta( $user_id, 'sms', true );
 			?>
 			<div class="dashboard-box-notification">
@@ -126,20 +126,20 @@ if(!empty($customer_orders)){
 						</svg><?php echo esc_html__('By Email','hello-elementor-child'); ?>
 					</label>
 				</span>
-				<span class="notification-selction">
+				<!-- <span class="notification-selction"> -->
 					<?php 
-					if($whatsapp === "on"){
-						$whatsapp_class = "active-preference";
-					}else{
-						$whatsapp_class = "";
-					}
+					// if($whatsapp === "on"){
+					// 	$whatsapp_class = "active-preference";
+					// }else{
+					// 	$whatsapp_class = "";
+					// }
 					?>
-					<label class="notification-selction-whatsapp <?php echo esc_attr($whatsapp_class); ?>">
+					<!-- <label class="notification-selction-whatsapp <?php //echo esc_attr($whatsapp_class); ?>">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M11.0027 0H10.9973C4.93213 0 0 4.9335 0 11C0 13.4062 0.7755 15.6365 2.09413 17.4474L0.72325 21.5339L4.95138 20.1823C6.69075 21.3345 8.76562 22 11.0027 22C17.0679 22 22 17.0651 22 11C22 4.93488 17.0679 0 11.0027 0ZM17.4034 15.5334C17.138 16.2827 16.0847 16.9042 15.2446 17.0857C14.6699 17.2081 13.9191 17.3057 11.3919 16.258C8.15925 14.9188 6.0775 11.6339 5.91525 11.4207C5.75988 11.2076 4.609 9.68138 4.609 8.10287C4.609 6.52437 5.41062 5.75575 5.73375 5.42575C5.99913 5.15488 6.43775 5.03113 6.8585 5.03113C6.99463 5.03113 7.117 5.038 7.227 5.0435C7.55013 5.05725 7.71237 5.0765 7.9255 5.58663C8.19088 6.226 8.83712 7.8045 8.91412 7.96675C8.9925 8.129 9.07088 8.349 8.96088 8.56213C8.85775 8.78213 8.767 8.87975 8.60475 9.06675C8.4425 9.25375 8.2885 9.39675 8.12625 9.5975C7.97775 9.77213 7.81 9.95913 7.997 10.2823C8.184 10.5985 8.83025 11.6531 9.78175 12.5001C11.0096 13.5932 12.0051 13.9425 12.3612 14.091C12.6266 14.201 12.9429 14.1749 13.1368 13.9686C13.3829 13.7033 13.6867 13.2633 13.9961 12.8301C14.2161 12.5194 14.4939 12.4809 14.7854 12.5909C15.0824 12.694 16.654 13.4709 16.9771 13.6317C17.3003 13.794 17.5134 13.871 17.5917 14.0071C17.6687 14.1433 17.6687 14.7826 17.4034 15.5334Z" fill="#EC4E34"/>
-						</svg><?php echo esc_html__('By Whatsapp','hello-elementor-child');?>
-					</label>
-				</span>
+						</svg><?php //echo esc_html__('By Whatsapp','hello-elementor-child');?>
+					</label> -->
+				<!-- </span> -->
 				<span class="notification-selction">
 					<?php 
 					if($sms === "on"){
@@ -198,68 +198,72 @@ if(!empty($customer_orders)){
 		<div class="dashboard-box sv-active-offer-box">
 			<h3 class="dashboard-box-title"><?php esc_html_e('Active Offers','hello-elementor-child'); ?></h3>
 			<div class="sv-active-offer-slider">
-				<?php
-				$active_offers = supa_active_offers_from_discount();
-				foreach ($active_offers as $offer) {
-					$offer_title = $offer['title'];
-					$discount_value = isset($offer['discount_value']) ? $offer['discount_value'] : '';
-					$product_category = isset($offer['product_category'][0]) ? $offer['product_category'][0] : '';
-					$products = isset($offer['products']) ? $offer['products'] : '';
-					$buy_type = isset($offer['buy_type']) ? $offer['buy_type'] : '';
-					$buy = isset($offer['buy']) ? $offer['buy'] : '';
-					$free_qty = isset($offer['free_qty']) ? $offer['free_qty'] : '';
-					$free_products = isset($offer['free_products']) ? $offer['free_products'] : '';
-					$title_to_display = '';
-					$shop_now_url = ''; 
-					$image_url = '';
-					if (!empty($product_category)) {
-						$term_val = get_term($product_category);
-						if ($term && !is_wp_error($term_val)) {
-							$title_to_display = $term_val->name;
-							$shop_now_url = get_term_link($term_val);
-							$thumbnail_id = get_term_meta($product_category, 'thumbnail_id', true);
-							if ($thumbnail_id) {
-								$image_url = wp_get_attachment_url($thumbnail_id);
-							}
-						}
-					} elseif (!empty($products)) {
-						$product = wc_get_product($products[0]);
-						if ($product) {
-							$title_to_display = $product->get_name();
-							$shop_now_url = get_permalink($product->get_id());
-							$image_id = $product->get_image_id();
-							if ($image_id) {
-								$image_url = wp_get_attachment_url($image_id);
-							}
-						}
-					}
-					?>
-					<div class="sv-deals-item-box">
-						<div class="box-text">
-							<?php if (!empty($buy)) : ?>
-								<span><?php esc_html_e('BUY','hello-elementor-child'); ?><?php echo esc_html($buy); ?></span>
-							<?php endif; ?>
-							<h4><?php echo esc_html($title_to_display); ?></h4>
-							<?php if (!empty($discount_value)) { ?>
-								<h4><?php esc_html_e('Get ','hello-elementor-child'); ?><span><?php echo esc_html($discount_value); ?></span></h4>
-							<?php } else if (!empty($free_qty)) { ?>
-								<h4><?php esc_html_e('Get ','hello-elementor-child'); ?><span><?php echo esc_html($free_qty . " Free"); ?></span></h4>
-							<?php } ?>
-							<div class="sv-delas-item-list">
-								<ul><li><?php esc_html_e('Conditions may apply','hello-elementor-child'); ?></li></ul>
-							</div>
-							<a href="<?php echo esc_url($shop_now_url); ?>" tabindex="-1"><?php esc_html_e('Shop Now','hello-elementor-child'); ?></a>
-						</div>
-						<div class="box-image">
-							<?php if (!empty($image_url)) : ?>
-								<img src="<?php echo esc_url($image_url); ?>" alt="image">
-							<?php else : ?>
-								<img src="/wp-content/uploads/2024/07/placeholedr-img.png" alt="default image">
-							<?php endif; ?>
-						</div>
-					</div>
-				<?php } ?>
-			</div>
+    <?php
+    $active_offers = supa_active_offers_from_discount();
+    // debug($active_offers);
+    foreach ($active_offers as $offer) {
+        $offer_title = $offer['title'];
+        $discount_value = isset($offer['discount_value']) ? $offer['discount_value'] : '';
+        $product_category = isset($offer['product_category'][0]) ? $offer['product_category'][0] : '';
+        $products = isset($offer['products']) ? $offer['products'] : '';
+        $buy_type = isset($offer['buy_type']) ? $offer['buy_type'] : '';
+        $buy = isset($offer['buy']) ? $offer['buy'] : '';
+        $free_qty = isset($offer['free_qty']) ? $offer['free_qty'] : '';
+        $free_products = isset($offer['free_products']) ? $offer['free_products'] : '';
+        $title_to_display = '';
+        $shop_now_url = ''; 
+        $image_url = '';
+
+        if (!empty($product_category)) {
+            $term_val = get_term($product_category);
+            // debug($term_val);
+            if ($term_val && !is_wp_error($term_val)) {
+                $title_to_display = $term_val->name;
+                $shop_now_url = get_term_link($term_val);
+                $thumbnail_id = get_term_meta($product_category, 'thumbnail_id', true);
+                if ($thumbnail_id) {
+                    $image_url = wp_get_attachment_url($thumbnail_id);
+                }
+            }
+        } elseif (!empty($products)) {
+            $product = wc_get_product($products[0]);
+            if ($product) {
+                $title_to_display = $product->get_name();
+                $shop_now_url = get_permalink($product->get_id());
+                $image_id = $product->get_image_id();
+                if ($image_id) {
+                    $image_url = wp_get_attachment_url($image_id);
+                }
+            }
+        }
+        ?>
+        <div class="sv-deals-item-box">
+            <div class="box-text">
+                <?php if (!empty($buy)) : ?>
+                    <span><?php esc_html_e('BUY','hello-elementor-child'); ?> <?php echo esc_html($buy); ?></span>
+                <?php endif; ?>
+                <h4><?php echo esc_html($title_to_display); ?></h4>
+                <?php if (!empty($discount_value)) { ?>
+                    <h4><?php esc_html_e('Get ','hello-elementor-child'); ?><span><?php echo esc_html($discount_value); ?></span></h4>
+                <?php } else if (!empty($free_qty)) { ?>
+                    <h4><?php esc_html_e('Get ','hello-elementor-child'); ?><span><?php echo esc_html($free_qty . " Free"); ?></span></h4>
+                <?php } ?>
+                <div class="sv-delas-item-list">
+                    <ul><li><?php esc_html_e('Conditions may apply','hello-elementor-child'); ?></li></ul>
+                </div>
+                <a href="<?php echo esc_url($shop_now_url); ?>" tabindex="-1"><?php esc_html_e('Shop Now','hello-elementor-child'); ?></a>
+            </div>
+            <div class="box-image">
+                <?php if (!empty($image_url)) : ?>
+                    <img src="<?php echo esc_url($image_url); ?>" alt="image">
+                <?php else : ?>
+                    <img src="/wp-content/uploads/2024/07/placeholedr-img.png" alt="default image">
+                <?php endif; ?>
+            </div>
+        </div>
+    <?php } ?>
+</div>
+
 		</div>
 		<div class="dashboard-box joke-slider">
 		<?php

@@ -16,7 +16,7 @@ if (!defined('ABSPATH')) {
 define('HELLO_ELEMENTOR_CHILD_VERSION', '2.0.0');
 define('HELLO_ELEMENTOR_CHILD_THEME_PATH', get_stylesheet_directory());
 include 'includes/classes/class-wc-custom-emails-manager.php';
-include 'includes/classes/class-wc-custom-sms-manager.php';
+// include 'includes/classes/class-wc-custom-sms-manager.php';
 include 'includes/classes/class-mailchimp-subscribers-table.php';
 
 // include HELLO_ELEMENTOR_CHILD_THEME_PATH .'/integration/functions.php';
@@ -1361,7 +1361,13 @@ function sv_send_selected_value() {
 			$coupon_code = sv_generate_unique_coupon_code();
 			sv_create_coupon($coupon_code, $emails_to_add);
 			// Send email
-			sv_send_quiz_email($quizemail, $coupon_code);
+			// sv_send_quiz_email($quizemail, $coupon_code);
+
+				$extra_data = array(
+					'{coupon_code}'   => $coupon_code
+				);
+			
+				WC()->mailer()->emails['WC_Email_Fun_Questionnaire_Order']->trigger( $quizemail, $extra_data );
 		}
 		wp_send_json_success(array('result' => $result, 'coupon_code' => $coupon_code));
 	} else {
@@ -3329,3 +3335,28 @@ if ( ! function_exists( 'sv_duplicate_comment_id_callback' ) ) {
 	}
 }
 add_filter( 'duplicate_comment_id', 'sv_duplicate_comment_id_callback', 99 );
+
+
+add_filter('woocommerce_available_payment_gateways', 'sv_disable_credit_card_woocommerce_payments');
+function sv_disable_credit_card_woocommerce_payments($available_gateways) {
+	// Check if WooCommerce Payments is available
+	if (isset($available_gateways['woocommerce_payments'])) {
+		// Remove WooCommerce Payments gateway
+		unset($available_gateways['woocommerce_payments']);
+	}
+
+	return $available_gateways;
+}
+
+
+add_filter( 'woocommerce_payment_gateway_supports', 'filter_payment_gateway_supports', 10, 3 );
+function filter_payment_gateway_supports( $supports, $feature, $payment_gateway ) {
+	// debug($payment_gateway);
+    // Here in the array, set the allowed payment method IDs (slugs)
+    $allowed_payment_method_ids = array('moneris', 'cod');
+
+    if ( in_array($payment_gateway->id, $allowed_payment_method_ids ) && $feature === 'add_payment_method' ) {
+        $supports = true;
+    }
+    return $supports;
+}
