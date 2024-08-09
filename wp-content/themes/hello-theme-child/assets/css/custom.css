@@ -1104,7 +1104,7 @@ a.minusQty::after{ content: "-"; color: var(--white); line-height: 1; font-size:
 /* footer form */
 form#mc-embedded-subscribe-form { margin: 0 !important; }
 div#mc_embed_signup { background: transparent; width: 100%; }
-div#mc_embed_signup .error-message {color: #ff0000;padding-left: 25px; margin-top: 10px;font-size: 16px;}
+div#mc_embed_signup .error-message {color: #ff0000;padding-left: 25px; margin-top: 10px;font-size: 16px;order: 1 !important;}
 div#mc_embed_signup #mce-responses .error-message {color: #ff0000; margin: 0 0 10px !important;padding-left: 0 !important;font-size: 16px;}
 .footer-subscribe-mail-form  #mc_embed_signup form{margin: 0 !important;}
 div#mc_embed_signup div#mce-responses{padding: 0 25px !important; width: 100%; margin: 0 !important;}
