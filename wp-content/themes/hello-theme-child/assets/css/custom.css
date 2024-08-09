@@ -777,6 +777,7 @@ body.woocommerce-checkout .woocommerce-column--billing-address address{padding: 
 body.woocommerce-account .woocommerce-MyAccount-navigation ul { padding: 0 !important; list-style-type: none; display: flex; flex-direction: column; gap: 20px; }
 body.woocommerce-account .woocommerce-MyAccount-content a.button{width: fit-content !important;}
 body.woocommerce-account .user-biography{display: none;}
+#add_payment_method .woocommerce-Payment{background-color: var(--secondary) !important;}
 body.woocommerce-account  .woocommerce img, .woocommerce-page img { height: 100%; max-width: 100%; object-fit: cover; object-position: center;}
 body.woocommerce-account .user-header-gavatar { max-width: 100%; object-fit: cover; object-position: center; height: 40px;}
 body.woocommerce-account .user-email {word-break: break-all;}
