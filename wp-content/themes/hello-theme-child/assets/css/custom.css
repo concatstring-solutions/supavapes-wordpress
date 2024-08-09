@@ -777,6 +777,7 @@ body.woocommerce-checkout .woocommerce-column--billing-address address{padding: 
 body.woocommerce-account .woocommerce-MyAccount-navigation ul { padding: 0 !important; list-style-type: none; display: flex; flex-direction: column; gap: 20px; }
 body.woocommerce-account .woocommerce-MyAccount-content a.button{width: fit-content !important;}
 body.woocommerce-account .user-biography{display: none;}
+#add_payment_method .woocommerce-Payment{background-color: var(--secondary) !important;}
 body.woocommerce-account  .woocommerce img, .woocommerce-page img { height: 100%; max-width: 100%; object-fit: cover; object-position: center;}
 body.woocommerce-account .user-header-gavatar { max-width: 100%; object-fit: cover; object-position: center; height: 40px;}
 body.woocommerce-account .user-email {word-break: break-all;}
@@ -1104,7 +1105,7 @@ a.minusQty::after{ content: "-"; color: var(--white); line-height: 1; font-size:
 /* footer form */
 form#mc-embedded-subscribe-form { margin: 0 !important; }
 div#mc_embed_signup { background: transparent; width: 100%; }
-div#mc_embed_signup .error-message {color: #ff0000;padding-left: 25px; margin-top: 10px;font-size: 16px;}
+div#mc_embed_signup .error-message {color: #ff0000;padding-left: 25px; margin-top: 10px;font-size: 16px;order: 1 !important;}
 div#mc_embed_signup #mce-responses .error-message {color: #ff0000; margin: 0 0 10px !important;padding-left: 0 !important;font-size: 16px;}
 .footer-subscribe-mail-form  #mc_embed_signup form{margin: 0 !important;}
 div#mc_embed_signup div#mce-responses{padding: 0 25px !important; width: 100%; margin: 0 !important;}
