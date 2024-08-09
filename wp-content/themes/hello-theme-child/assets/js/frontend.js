@@ -12,11 +12,8 @@ jQuery(document).ready(function() {
 			
 			// Replace the original element with the clone
 			$this.replaceWith(clone);
-		}, 500); // Ensure this happens after the click event
+		}, 1000); // Ensure this happens after the click event
 	});
-
-	// jQuery( ".supa-deals-share" ).click(function(e) {
-	// 	jQuery(".share-option").toggleClass("active");
 
 	// });
 	jQuery(".supa-deals-share").click(function() {
