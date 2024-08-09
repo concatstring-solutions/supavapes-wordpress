@@ -555,6 +555,7 @@ jQuery(document).ready(function() {
     }
     jQuery(document).on("click", '.sv-place-order', function(e) {
         jQuery('.pre-loader_page').show();
+        jQuery('.wc-block-components-checkout-place-order-button').addClass('cod-payment');
         var counter = getCookie('payment_fail_counter');
         if (parseInt(counter) >= sv_ajax.payment_fail_counter) {
             jQuery('.pre-loader_page').hide();
